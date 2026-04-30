@@ -7,7 +7,11 @@ describe("content route param helpers", () => {
     expect(CONTENT_ROUTE_DYNAMIC_PARAMS).toBe(false);
   });
 
-  it("produce no route params before content pages exist", () => {
-    expect(createStaticRouteParams(listRouteDocuments())).toEqual([]);
+  it("produce static route params from validated Markdown content", () => {
+    expect(createStaticRouteParams(listRouteDocuments())).toEqual([
+      {
+        slug: ["inside-the-agentic-brain"],
+      },
+    ]);
   });
 });

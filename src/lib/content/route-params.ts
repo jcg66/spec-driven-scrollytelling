@@ -1,6 +1,6 @@
 import { normalizeSlug } from "@/lib/site-config";
 
-import type { RouteDocument } from "./content-repository";
+import type { RouteDocument } from "./schema";
 
 export const CONTENT_ROUTE_DYNAMIC_PARAMS = false;
 
