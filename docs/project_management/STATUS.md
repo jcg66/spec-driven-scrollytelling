@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Planning / pre-implementation |
-| Current spec | None in active development yet |
-| Current sprint | Not started |
+| Phase | Spec 01 sprint planning |
+| Current spec | Spec 01: Architecture |
+| Current sprint | Sprint planning complete; implementation not started |
 | Next recommended spec | Spec 01: Architecture |
-| Last completed work | QA pass and rework of all project specs |
+| Last completed work | Broke Spec 01 into sprints and reviewed the sprint plan |
 
 ## Current Context
 
@@ -23,11 +23,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Select the next spec to implement.
-- Break that spec into sprints before coding.
+- Start Spec 01 implementation.
+- Begin with Sprint 01A: Static Export Foundation.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
 
 ## Notes
 
 - Specs have been revised to close gaps around GitHub Pages deployment, route contracts, visualization embedding, and exported-artifact QA.
-- No implementation sprints have started yet.
+- Spec 01 sprint plan lives in `docs/project_management/sprints/01-architecture.md`.

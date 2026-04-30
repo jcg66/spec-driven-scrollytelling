@@ -28,7 +28,7 @@ now i want you to review the `OBJECTIVE.md`, and break it up into individual spe
 ...
 
 ## break the spec into sprints
-...
+i want you to start the first spec. i want you to read the spec file and then break up the spec into sprints and review the sprints.
 
 ### SPRINTS
 - for each sprint
