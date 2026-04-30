@@ -1,6 +1,9 @@
-import { DEFAULT_BASE_PATH, PRODUCTION_URL_SHAPE } from "@/lib/site-config";
+import { createCanonicalUrl, createRoutePath, DEFAULT_BASE_PATH, PRODUCTION_URL_SHAPE } from "@/lib/site-config";
 
 export default function HomePage() {
+  const homepagePath = createRoutePath();
+  const canonicalUrl = createCanonicalUrl();
+
   return (
     <main className="pageShell">
       <section className="panel">
@@ -16,7 +19,7 @@ export default function HomePage() {
           <li>Images are configured for static hosting with no runtime optimization dependency.</li>
           <li>The exported artifact can be verified from the non-root path it will use in production.</li>
         </ul>
-        <pre className="codeLine">{`${PRODUCTION_URL_SHAPE}\nbasePath=${DEFAULT_BASE_PATH}`}</pre>
+        <pre className="codeLine">{`${PRODUCTION_URL_SHAPE}\nbasePath=${DEFAULT_BASE_PATH}\nhome=${homepagePath}\ncanonical=${canonicalUrl}`}</pre>
       </section>
     </main>
   );
