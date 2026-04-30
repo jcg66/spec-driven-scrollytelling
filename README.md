@@ -12,4 +12,19 @@ The project is using the reviewed scrollytelling reference as a process and arch
 - Topic and visual theme defined in [TOPIC.md](./docs/project_management/TOPIC.md) and [THEME.md](./docs/project_management/THEME.md).
 - High-level project objective documented in [OBJECTIVE.md](./docs/project_management/OBJECTIVE.md).
 - Project specs created in [specs/](./docs/project_management/specs/), covering architecture, content, layouts, motion, design, visualization, QA, and deployment.
-- Implementation work has not started yet; the project is currently in the planning and specification stage.
+- Sprint 01A is implementing the static export foundation for the Next.js app.
+
+## App Foundation
+
+Sprint 01A establishes the production URL and export assumptions the codebase will build on.
+
+- Production deployment target: `https://<account>.github.io/spec-driven-scrollytelling/`
+- Default application base path: `/spec-driven-scrollytelling`
+- Export mode: static `out/` artifact with trailing-slash-compatible routes
+- Image strategy: unoptimized static assets only, with no runtime image optimization dependency
+
+## Commands
+
+- `npm test`: runs the Sprint 01A unit checks for base-path and export configuration.
+- `npm run build`: creates the production static export.
+- `npm run verify:export`: serves the exported artifact locally and verifies the repository subpath works.

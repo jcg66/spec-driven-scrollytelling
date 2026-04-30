@@ -31,13 +31,13 @@ now i want you to review the `OBJECTIVE.md`, and break it up into individual spe
 i want you to start the first spec. i want you to read the spec file and then break up the spec into sprints and review the sprints.
 
 ### SPRINTS
-- for each sprint
+- for each sprint:
 
 ## QA the sprint
-...
+- i want you to QA the first sprint with respect to the project
 
 ## develop based on the sprints
-...
+- then i want you to implement it, and run tests so it achieves the goals for the sprint.
 
 ## QA the development results
 ...
@@ -45,3 +45,5 @@ i want you to start the first spec. i want you to read the spec file and then br
 ## mark the spec as complete
 ...
 
+## update the status and continue
+...
