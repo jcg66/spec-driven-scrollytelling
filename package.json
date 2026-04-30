@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "test": "vitest run --config vitest.config.ts",
-    "verify:export": "node scripts/verify-export.mjs"
+    "test:e2e": "playwright test --config playwright.config.ts",
+    "verify:export": "npm run build && npm run test:e2e"
   },
   "dependencies": {
     "next": "^16.2.4",
@@ -14,6 +15,7 @@
     "react-dom": "^19.2.5"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@types/node": "^25.6.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",

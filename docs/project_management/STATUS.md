@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 implementation |
-| Current spec | Spec 01: Architecture |
-| Current sprint | Sprint 01C complete; Sprint 01D next |
-| Next recommended spec | Spec 01: Architecture |
-| Last completed work | Implemented and verified Sprint 01C: App Shell and Module Boundaries |
+| Phase | Spec 01 complete; Spec 02 ready |
+| Current spec | Spec 01: Architecture complete |
+| Current sprint | Sprint 01D complete |
+| Next recommended spec | Spec 02: Content and Routing |
+| Last completed work | Implemented and verified Sprint 01D: Exported Artifact Smoke Verification |
 
 ## Current Context
 
@@ -23,9 +23,10 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start Sprint 01D: Exported Artifact Smoke Verification.
+- Start Spec 02 planning and implementation.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep the content-routing boundary in `src/lib/content` until Spec 02 introduces real routeable pages.
+- Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
 
 ## Notes
@@ -37,3 +38,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 01B verification passed with `npm test`, `npm run build`, and `npm run verify:export`.
 - Sprint 01B QA found no blocking defects; the main carry-forward gap was missing app-shell and module-boundary enforcement, addressed in Sprint 01C.
 - Sprint 01C verification passed with `npm test`, `npm run build`, and `npm run verify:export`.
+- Sprint 01C QA found that `tests/unit/page-layout-factory.test.tsx` was not actually executing because `vitest.config.ts` only included `*.test.ts`; that coverage gap was fixed during Sprint 01D.
+- Sprint 01D verification passed with `npm test` and `npm run verify:export`.
+- Sprint 01D replaced the old HTTP-only export check with a Playwright smoke test that serves `out/` under `/spec-driven-scrollytelling/`, verifies base-path-prefixed assets, and confirms static-miss recovery back to the homepage.

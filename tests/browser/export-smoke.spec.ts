@@ -1,0 +1,52 @@
+import { expect, test } from "@playwright/test";
+
+test("exported site loads under the repository base path and survives a static miss", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const basePath = new URL(sameOriginPrefix).pathname.replace(/\/$/, "");
+  const homeUrl = `${sameOriginPrefix}/`;
+  const missingRouteUrl = `${sameOriginPrefix}/missing/route/`;
+  const failedRequests: string[] = [];
+  const errorResponses: string[] = [];
+
+  page.on("requestfailed", (request) => {
+    if (request.url().startsWith(sameOriginPrefix)) {
+      failedRequests.push(`${request.method()} ${new URL(request.url()).pathname}`);
+    }
+  });
+
+  page.on("response", (response) => {
+    if (response.url().startsWith(sameOriginPrefix) && response.status() >= 400) {
+      errorResponses.push(`${response.status()} ${new URL(response.url()).pathname}`);
+    }
+  });
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  await expect(page.getByRole("heading", { level: 1, name: "Static Export Foundation" })).toBeVisible();
+
+  const assetPaths = await page.evaluate(() =>
+    [
+      ...Array.from(document.querySelectorAll("script[src]"), (element) => element.getAttribute("src")),
+      ...Array.from(
+        document.querySelectorAll('link[rel="stylesheet"][href]'),
+        (element) => element.getAttribute("href"),
+      ),
+    ].filter((value): value is string => Boolean(value)),
+  );
+
+  expect(assetPaths.length).toBeGreaterThan(0);
+
+  for (const assetPath of assetPaths) {
+    expect(assetPath.startsWith(`${basePath}/`)).toBe(true);
+  }
+
+  expect(await page.evaluate(() => document.styleSheets.length)).toBeGreaterThan(0);
+
+  await page.goto(missingRouteUrl, { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { level: 1, name: "Page Not Found" })).toBeVisible();
+  await page.getByRole("link", { name: "Return Home" }).click();
+  await expect(page).toHaveURL(new RegExp(`${basePath}/$`));
+
+  expect(failedRequests).toEqual([]);
+  expect(errorResponses).toEqual([`404 ${basePath}/missing/route/`]);
+});

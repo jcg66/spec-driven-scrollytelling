@@ -12,7 +12,7 @@ The project is using the reviewed scrollytelling reference as a process and arch
 - Topic and visual theme defined in [TOPIC.md](./docs/project_management/TOPIC.md) and [THEME.md](./docs/project_management/THEME.md).
 - High-level project objective documented in [OBJECTIVE.md](./docs/project_management/OBJECTIVE.md).
 - Project specs created in [specs/](./docs/project_management/specs/), covering architecture, content, layouts, motion, design, visualization, QA, and deployment.
-- Sprint 01A is implementing the static export foundation for the Next.js app.
+- Spec 01 is complete through Sprint 01D, including exported-artifact smoke verification.
 
 ## App Foundation
 
@@ -25,6 +25,7 @@ Sprint 01A establishes the production URL and export assumptions the codebase wi
 
 ## Commands
 
-- `npm test`: runs the Sprint 01A unit checks for base-path and export configuration.
+- `npm test`: runs the current unit and component-level architecture checks.
 - `npm run build`: creates the production static export.
-- `npm run verify:export`: serves the exported artifact locally and verifies the repository subpath works.
+- `npm run test:e2e`: serves the exported artifact locally under the repository base path and runs the browser smoke test.
+- `npm run verify:export`: runs the production build and then the exported-artifact browser smoke workflow.
