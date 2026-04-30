@@ -8,16 +8,17 @@ Use motion as explanatory infrastructure for the scrollytelling experience, not 
 
 - Scroll-linked motion must reinforce the agent narrative: intent, decomposition, perception, action, and completion.
 - Motion primitives must behave differently when used in standard pages versus presentation slides where appropriate.
-- Presentation slides should support sticky-stage storytelling and meaningful progress through the sequence.
+- Presentation slides should support sticky-stage storytelling and a visible progress indicator that reflects meaningful progress through the sequence.
 - Interaction design must degrade gracefully under reduced-motion preferences.
 - Motion state should remain predictable and testable rather than hidden behind ad hoc animation code.
+- Keyboard shortcuts or other step-navigation affordances are optional, but if implemented they must not interfere with native scrolling, focus order, or assistive technology behavior.
 
 ## In Scope
 
 - Reveal behavior.
 - Scroll progress handling.
 - Sticky slide progression.
-- Optional progress indicators, keyboard affordances, or other navigation helpers if they materially improve comprehension.
+- Progress indicators and any optional keyboard affordances or other navigation helpers that materially improve comprehension.
 
 ## Non-Goals
 
@@ -29,11 +30,12 @@ Use motion as explanatory infrastructure for the scrollytelling experience, not 
 
 - Each major visual transition maps to a narrative change the visitor can understand.
 - Sticky-slide progression is stable on desktop and usable on mobile.
+- The visible progress indicator updates consistently as the visitor moves through the presentation sequence.
 - Reduced-motion mode displays readable end states without broken spacing or missing information.
 - Motion primitives are reusable across scenes instead of being implemented as one-off page hacks.
 
 ## Automated Verification
 
 - Unit or component tests cover motion mode selection and reduced-motion fallbacks where logic is observable.
-- Browser tests verify slide progression, major section visibility, and any progress indicator state changes.
+- Browser tests verify slide progression, major section visibility, and progress indicator state changes.
 - Regression checks should include viewport coverage for mobile and desktop breakpoints.

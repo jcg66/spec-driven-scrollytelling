@@ -14,6 +14,13 @@ i want you to review the scrollytelling_review.md, TOPIC.md, and THEME.md. i wan
 ## synthesize the goal into large specs
 now i want you to review the `OBJECTIVE.md`, and break it up into individual specs, based on the tech stack covered in `scrollytelling_review.md`. incorporate professional SWE automated testing and QA practices that will be used for this kind of technical project.
 
+## QA the specs
+- let's review the specs. (the final product will be published to github pages). read and QA each spec in docs/project_management/specs.
+- now i want you to re-work the specs to apply the QA results.
+
+## setup and track project status
+- i want you to create a simple docs/project_management/STATUS.md to keep track of the current spec, sprint, and relevant context info.
+
 # DEVELOPMENT
 - for each spec:
 

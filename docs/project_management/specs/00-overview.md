@@ -21,6 +21,7 @@ By the end of the experience, a visitor should understand:
 ## Core Constraints
 
 - The site must be statically exportable.
+- The published target is GitHub Pages under a non-root project base path rather than a root-domain deployment.
 - The content model must support narrative iteration without requiring frequent JSX edits.
 - The scrollytelling experience must remain understandable with reduced motion enabled.
 - The project must remain vendor-neutral at the product level even if examples reference current ecosystems.
@@ -41,5 +42,5 @@ By the end of the experience, a visitor should understand:
 
 ## Automated Verification
 
-- Smoke e2e coverage must confirm that the homepage and at least one presentation page build and render successfully.
+- Smoke e2e coverage must confirm that the homepage and the canonical presentation experience render successfully from the exported static artifact when served under the GitHub Pages base path.
 - Content validation must fail the build when required metadata or routeable content is invalid.

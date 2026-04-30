@@ -4,6 +4,8 @@ This directory breaks [OBJECTIVE.md](../OBJECTIVE.md) into implementation-facing
 
 The specs are aligned to the technical patterns identified in [scrollytelling_review.md](../scrollytelling_review.md): App Router static export, Markdown-first content, dual layout modes, motion-driven storytelling, embedded visualizations, and test-backed QA.
 
+Unless a spec says otherwise, these documents assume the production target is a GitHub Pages project site published under a non-root base path of the form `https://<account>.github.io/<repository>/`. The harder non-root deployment case is the default contract for routing, assets, metadata, and verification.
+
 ## Reading Order
 
 | # | Spec | Purpose |
