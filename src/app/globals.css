@@ -33,6 +33,10 @@ a {
   padding: 3rem 1.5rem;
 }
 
+.shellFrame {
+  width: min(60rem, 100%);
+}
+
 .panel {
   width: min(52rem, 100%);
   padding: 2rem;
@@ -67,6 +71,41 @@ a {
   margin: 1.5rem 0 0;
   padding-left: 1.2rem;
   color: #e5ebff;
+  line-height: 1.6;
+}
+
+.contentStack {
+  margin-top: 1.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.panelPresentation {
+  border-color: rgba(122, 229, 160, 0.28);
+}
+
+.revealFrame {
+  display: block;
+}
+
+.visualizationFrame {
+  padding: 1rem 1.1rem;
+  border: 1px dashed rgba(122, 229, 160, 0.4);
+  border-radius: 1rem;
+  background: rgba(5, 9, 18, 0.75);
+}
+
+.visualizationLabel {
+  margin: 0;
+  color: #7ae5a0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.visualizationDescription {
+  margin: 0.65rem 0 0;
+  color: #ced5ec;
   line-height: 1.6;
 }
 
