@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 in progress |
 | Current spec | Spec 02: Content and Routing in progress |
-| Current sprint | Sprint 02B ready to start |
+| Current sprint | Sprint 02C ready to start |
 | Next recommended spec | Spec 02: Content and Routing |
-| Last completed work | Implemented and verified Sprint 02A: Content Sources and Frontmatter Schema |
+| Last completed work | Implemented and verified Sprint 02B: Content Discovery and Route Registry |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 02B: Content Discovery and Route Registry`.
+- Start `Sprint 02C: Markdown Parsing and Presentation Segmentation`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -46,3 +46,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 02A QA found the expected pre-implementation gaps: homepage content was still hard-coded in TypeScript, published/reference Markdown source conventions did not exist, and there was no formal frontmatter validation layer.
 - Sprint 02A implemented `content/home`, `content/pages`, and `content/reference`, added strict Markdown frontmatter validation in `src/lib/content/schema.ts`, and moved homepage loading into the Markdown-backed content repository.
 - Sprint 02A verification passed with `npm test`, `npm run build`, and `npm run verify:export`.
+- Sprint 02B added deterministic route-registry validation for duplicate and app-owned slugs, wired static param generation through the validated registry, and extended unit coverage for the new failure cases.
+- Sprint 02B verification passed with `npm run test -- tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run build`.
+

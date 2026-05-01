@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  createRouteRegistry,
   getHomeDocument,
   getRouteDocumentBySlug,
   HOME_SOURCE_PATH,
@@ -11,7 +12,18 @@ import {
   listRoutePageSourcePaths,
   REFERENCE_CONTENT_DIRECTORY,
   ROUTE_PAGE_CONTENT_DIRECTORY,
+  type RouteDocument,
 } from "@/lib/content";
+
+function createRouteDocument(overrides: Partial<RouteDocument> & Pick<RouteDocument, "slug" | "sourcePath">): RouteDocument {
+  return {
+    title: "Example",
+    summary: "Example summary",
+    layout: "standard",
+    body: "Example body",
+    ...overrides,
+  };
+}
 
 describe("content repository seams", () => {
   it("loads the homepage from the dedicated Markdown source", () => {
@@ -35,6 +47,15 @@ describe("content repository seams", () => {
     expect(publishedPaths.some((sourcePath) => isReferenceSourcePath(sourcePath))).toBe(false);
   });
 
+  it("filters draft route pages out of the public registry", () => {
+    const routePagePaths = listRoutePageSourcePaths();
+    const documents = listRouteDocuments();
+
+    expect(routePagePaths.some((sourcePath) => sourcePath.endsWith("draft-story.md"))).toBe(true);
+    expect(documents).toHaveLength(1);
+    expect(documents.map((document) => document.slug)).toEqual(["inside-the-agentic-brain"]);
+  });
+
   it("loads routeable documents from published Markdown sources only", () => {
     const documents = listRouteDocuments();
 
@@ -43,5 +64,29 @@ describe("content repository seams", () => {
     expect(documents[0]?.layout).toBe("presentation");
     expect(getRouteDocumentBySlug(["inside-the-agentic-brain"])?.title).toBe("Inside the Agentic Brain");
     expect(getRouteDocumentBySlug(["future", "page"])).toBeNull();
+  });
+
+  it("orders the route registry deterministically by slug", () => {
+    const registry = createRouteRegistry([
+      createRouteDocument({ slug: "zeta/last", sourcePath: "content/pages/zeta-last.md" }),
+      createRouteDocument({ slug: "alpha/first", sourcePath: "content/pages/alpha-first.md" }),
+    ]);
+
+    expect(registry.map((routeEntry) => routeEntry.slug)).toEqual(["alpha/first", "zeta/last"]);
+  });
+
+  it("rejects duplicate route slugs", () => {
+    expect(() =>
+      createRouteRegistry([
+        createRouteDocument({ slug: "stories/agent-loop", sourcePath: "content/pages/first.md" }),
+        createRouteDocument({ slug: "stories/agent-loop", sourcePath: "content/pages/second.md" }),
+      ]),
+    ).toThrow(/Route slug "stories\/agent-loop" duplicates/);
+  });
+
+  it("rejects app-owned route slugs", () => {
+    expect(() =>
+      createRouteRegistry([createRouteDocument({ slug: "404", sourcePath: "content/pages/not-found.md" })]),
+    ).toThrow(/Route slug "404" is reserved for app-owned routes\./);
   });
 });
