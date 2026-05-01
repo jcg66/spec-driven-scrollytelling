@@ -1,18 +1,22 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  CANONICAL_NARRATIVE_ROUTE,
   CANONICAL_NARRATIVE_SPINE,
   createContentRouteMetadata,
   createContentRoutePageModel,
-  getCanonicalNarrativeRouteDocument,
 } from "@/lib/content";
+import { getHomeDocument, parseMarkdownBlocks } from "@/lib/content";
 import { buildPresentationNarrative } from "@/components/content/PresentationContent";
 
 describe("content route pages", () => {
-  it("exposes the canonical narrative route explicitly", () => {
-    expect(CANONICAL_NARRATIVE_ROUTE).toBe("inside-the-agentic-brain");
-    expect(getCanonicalNarrativeRouteDocument()?.slug).toBe(CANONICAL_NARRATIVE_ROUTE);
+  it("exposes the canonical narrative on the homepage", () => {
+    const homeDocument = getHomeDocument();
+
+    expect(homeDocument.layout).toBe("presentation");
+
+    const narrative = buildPresentationNarrative(parseMarkdownBlocks(homeDocument.body).blocks);
+
+    expect(narrative.chapters.map((chapter) => chapter.title)).toEqual(CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.title));
   });
 
   it("creates metadata from validated route documents", () => {
@@ -22,28 +26,22 @@ describe("content route pages", () => {
     });
 
     expect(pageModel?.metadata).toMatchObject({
-      title: "Inside the Agentic Brain",
-      description: "A presentation-style story explaining the planner, grounder, and action loop inside an AI agent.",
+      title: "Story Guide",
+      description: "A supporting reading page that explains the scene map and vocabulary used by the homepage story.",
       alternates: {
         canonical: "https://demo.github.io/preview-site/inside-the-agentic-brain/",
       },
       openGraph: {
-        title: "Inside the Agentic Brain",
-        description: "A presentation-style story explaining the planner, grounder, and action loop inside an AI agent.",
+        title: "Story Guide",
+        description: "A supporting reading page that explains the scene map and vocabulary used by the homepage story.",
         url: "https://demo.github.io/preview-site/inside-the-agentic-brain/",
       },
     });
 
-    expect(pageModel?.metadata.openGraph?.images).toEqual([
-      {
-        url: "/preview-site/images/inside-the-agentic-brain-hero.png",
-        alt: "Inside the Agentic Brain",
-      },
-    ]);
-    expect(pageModel?.document.layout).toBe("presentation");
+    expect(pageModel?.metadata.openGraph?.images).toBeUndefined();
+    expect(pageModel?.document.layout).toBe("standard");
     expect(pageModel?.parsedContent.blocks[0]).toMatchObject({
-      type: "heading",
-      level: 1,
+      type: "paragraph",
     });
     expect(
       pageModel?.parsedContent.blocks
@@ -51,7 +49,7 @@ describe("content route pages", () => {
         .map((block) => (block.type === "heading" ? block.inlines[0] : null))
         .filter(Boolean)
         .map((node) => (node && "value" in node ? node.value : "")),
-    ).toEqual(["Inside the Agentic Brain", ...CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.title)]);
+    ).toEqual(["Scene map", "Vocabulary"]);
   });
 
   it("returns null for unknown content routes", () => {
@@ -68,29 +66,24 @@ describe("content route pages", () => {
     }
 
     expect(createContentRouteMetadata(pageModel.document)).toMatchObject({
-      title: "Inside the Agentic Brain",
-      description: "A presentation-style story explaining the planner, grounder, and action loop inside an AI agent.",
+      title: "Story Guide",
+      description: "A supporting reading page that explains the scene map and vocabulary used by the homepage story.",
     });
   });
 
-  it("defines a deterministic narrative spine for the canonical route", () => {
+  it("defines a deterministic narrative spine for the homepage story", () => {
     expect(CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.key)).toEqual([
-      "intent",
-      "planning",
-      "grounding",
-      "execution",
+      "spark",
+      "deconstruction",
+      "digital-eye",
+      "execution-loop",
       "outcome",
     ]);
   });
 
-  it("groups the canonical presentation body into an outline and chapter sections", () => {
-    const pageModel = createContentRoutePageModel([CANONICAL_NARRATIVE_ROUTE]);
-
-    if (!pageModel) {
-      throw new Error("Expected a canonical route model.");
-    }
-
-    const narrative = buildPresentationNarrative(pageModel.parsedContent.blocks);
+  it("groups the homepage presentation body into an outline and chapter sections", () => {
+    const homeDocument = getHomeDocument();
+    const narrative = buildPresentationNarrative(parseMarkdownBlocks(homeDocument.body).blocks);
 
     expect(narrative.introBlocks.length).toBeGreaterThan(0);
     expect(narrative.chapters.map((chapter) => chapter.title)).toEqual(CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.title));

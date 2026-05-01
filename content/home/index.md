@@ -1,13 +1,37 @@
 ---
-title: Static Export Foundation
-summary: This bootstrap establishes the GitHub Pages deployment contract before the deeper narrative, content, and presentation work is layered in.
-layout: standard
-eyebrow: Sprint 02A
+title: Inside the Agentic Brain
+summary: A single-page scrollytelling story about the action layer, from Spark to Outcome.
+layout: presentation
+eyebrow: Canonical Story
 highlights:
-  - The homepage content is now authored from Markdown instead of a hard-coded TypeScript object.
-  - Routeable page content has a dedicated Markdown source convention with validated frontmatter.
-  - Research and story-development Markdown can accumulate safely in a separate reference area without creating accidental routes.
-visualizationLabel: Content Contract
-visualizationDescription: The content layer now distinguishes published homepage content, routeable pages, and ignored reference sources before richer parsing begins.
+  - One scrollable narrative page carries the full agent story from intent to outcome.
+  - The five story scenes are structured as Spark, Deconstruction, Digital Eye, Execution Loop, and Outcome.
+  - Supporting context remains secondary so the homepage can stay the primary story surface.
+visualizationLabel: Agent Core Overview
+visualizationDescription: The homepage now carries the canonical scroll story and frames the five scenes as a continuous narrative sequence.
 ---
-Spec 02A establishes the authoring contract for the project. The homepage, future routeable pages, and non-routeable research notes now have separate source conventions so later routing and parsing work can build on deterministic inputs.
+The homepage is the canonical public story route.
+
+It starts with an intent, breaks that intent into work, grounds the work in the interface, executes the plan, and resolves in a clear outcome.
+
+## Spark
+
+The story opens in an isolated hero state. The user arrives with a request, and the page frames that request as the beginning of the action layer.
+
+## Deconstruction
+
+The request becomes structure. The agent separates the goal into parts, constraints, and tasks that can be reasoned about one step at a time.
+
+## Digital Eye
+
+The narrative shifts to visual grounding. The agent reads the interface, follows the visible state, and uses that context to stay aligned with the task.
+
+## Execution Loop
+
+The story moves into action. The agent clicks, checks feedback, and keeps adapting as the environment changes.
+
+## Outcome
+
+The page closes with a completed result and a calm resolution state.
+
+For supporting reading, explore the [story guide](agentic-ai-context/).

@@ -89,6 +89,30 @@ Keep the presentation comprehensible when motion is reduced or unavailable.
 - Browser tests run with reduced-motion preferences enabled.
 - Component tests cover any observable fallback logic.
 
+### Sprint 03-Refactor: Story-Specific Homepage Realignment
+
+**Goal**
+
+Move the public story surface onto the homepage and demote the old narrative route into secondary support content so the public-facing layout matches the updated spec.
+
+**Scope**
+
+- Render the homepage as the canonical presentation page for the story.
+- Keep the five-scene presentation sequence on the homepage and preserve its outline landmarks.
+- Reclassify the former narrative route as support content that explains the story instead of competing with it.
+- Update browser and unit coverage so QA validates the homepage story and the secondary support pages.
+
+**Exit Criteria**
+
+- The homepage is the primary narrative entry point.
+- The old route no longer acts as the canonical story surface.
+- Secondary support content remains accessible without fragmenting the single-page story.
+
+**Verification**
+
+- Unit tests confirm the homepage narrative spine and the support-page metadata.
+- Browser tests confirm the homepage story, support-page navigation, and exported artifact behavior under the repository base path.
+
 ### Sprint 03D: Single-Page Release-Review QA and Navigation Coverage
 
 **Goal**
@@ -120,6 +144,7 @@ Prove the single-page narrative system works in the exported artifact and is rea
 - `03A` must come first because the single-page route and chapter spine need to exist before layout and fallback work can be trusted.
 - `03B` follows because presentation structure and layout landmarks depend on the narrative spine being stable.
 - `03C` comes next because motion-independent clarity should be added after the structural layout contract exists.
+- `03-Refactor` comes next because the public homepage must be realigned before release-review coverage validates the final surface.
 - `03D` comes last because release-review and exported-artifact coverage should validate the completed narrative flow rather than an intermediate fragment.
 
 ### Scope Check
@@ -141,6 +166,7 @@ Prove the single-page narrative system works in the exported artifact and is rea
 - The sprint sequence separates canonical route designation, layout orchestration, motion-independent readability, and release-review QA so failures can be isolated.
 - The existing `standard` and `presentation` split is preserved for supporting content instead of introducing extra story routes too early.
 - Supporting pages are treated as secondary content, not as alternate story entry points.
+- The refactor sprint is the point where the homepage becomes the primary public story surface and the old route stops competing with it.
 - Exported-artifact verification is attached to the final sprint so Spec 03 closes with production-shape evidence.
 
 ## Ready-to-Implement Recommendation

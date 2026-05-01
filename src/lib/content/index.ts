@@ -15,11 +15,9 @@ export {
 } from "./schema";
 export { createRouteRegistry, getHomeDocument, getRouteDocumentBySlug, listRouteDocuments } from "./content-repository";
 export {
-  CANONICAL_NARRATIVE_ROUTE,
   CANONICAL_NARRATIVE_SPINE,
   createContentRouteMetadata,
   createContentRoutePageModel,
-  getCanonicalNarrativeRouteDocument,
 } from "./content-pages";
 export { parseMarkdownBlocks, parsePresentationMarkdown, PRESENTATION_SLIDE_DELIMITER } from "./markdown-parser";
 export {

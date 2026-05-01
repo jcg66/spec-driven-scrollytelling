@@ -7,8 +7,6 @@ import { parseMarkdownBlocks } from "./markdown-parser";
 import type { ParsedMarkdownDocument } from "./markdown-parser";
 import type { RouteDocument } from "./schema";
 
-export const CANONICAL_NARRATIVE_ROUTE = "inside-the-agentic-brain";
-
 export type NarrativeChapter = {
   key: string;
   title: string;
@@ -17,29 +15,29 @@ export type NarrativeChapter = {
 
 export const CANONICAL_NARRATIVE_SPINE: readonly NarrativeChapter[] = [
   {
-    key: "intent",
-    title: "User Intent",
-    summary: "The story starts with a request and the goal the agent has to satisfy.",
+    key: "spark",
+    title: "Spark",
+    summary: "The story starts with a request and a single page opens around it.",
   },
   {
-    key: "planning",
-    title: "Planning",
-    summary: "The agent breaks the request into a sequence of decisions and constraints.",
+    key: "deconstruction",
+    title: "Deconstruction",
+    summary: "The request becomes smaller tasks, dependencies, and constraints.",
   },
   {
-    key: "grounding",
-    title: "Visual Grounding",
-    summary: "The narrative shows how the agent aligns what it plans with what it can observe.",
+    key: "digital-eye",
+    title: "Digital Eye",
+    summary: "The agent reads the visible interface and stays aligned with the situation.",
   },
   {
-    key: "execution",
-    title: "Execution",
-    summary: "The agent acts in the environment and uses feedback to keep moving.",
+    key: "execution-loop",
+    title: "Execution Loop",
+    summary: "The agent acts, checks feedback, and keeps moving.",
   },
   {
     key: "outcome",
     title: "Outcome",
-    summary: "The route closes by showing the result and what the viewer should understand from it.",
+    summary: "The page closes by showing the result and what the viewer should understand from it.",
   },
 ] as const;
 
@@ -101,8 +99,4 @@ export function createContentRoutePageModel(
     parsedContent: parseMarkdownBlocks(document.body),
     metadata: createContentRouteMetadata(document, options),
   };
-}
-
-export function getCanonicalNarrativeRouteDocument() {
-  return getRouteDocumentBySlug([CANONICAL_NARRATIVE_ROUTE]);
 }

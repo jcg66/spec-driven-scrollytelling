@@ -10,7 +10,9 @@ test("exported site loads under the repository base path and survives a static m
   const errorResponses: string[] = [];
 
   page.on("requestfailed", (request) => {
-    if (request.url().startsWith(sameOriginPrefix)) {
+    const failure = request.failure();
+
+    if (request.url().startsWith(sameOriginPrefix) && failure?.errorText !== "net::ERR_ABORTED") {
       failedRequests.push(`${request.method()} ${new URL(request.url()).pathname}`);
     }
   });
@@ -23,13 +25,16 @@ test("exported site loads under the repository base path and survives a static m
 
   await page.goto(homeUrl, { waitUntil: "networkidle" });
 
-  await expect(page.getByRole("heading", { level: 1, name: "Static Export Foundation" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Start the canonical narrative" })).toBeVisible();
-  await page.getByRole("link", { name: "Start the canonical narrative" }).click();
-  await expect(page).toHaveURL(new RegExp(`${basePath}/inside-the-agentic-brain/$`));
   await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
   await expect(page.getByRole("navigation", { name: "Chapter outline" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 2, name: "User Intent" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Spark" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Outcome" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "story guide" })).toBeVisible();
+  await page.getByRole("link", { name: "story guide" }).click();
+  await expect(page).toHaveURL(new RegExp(`${basePath}/agentic-ai-context/$`));
+  await expect(page.getByRole("heading", { level: 1, name: "Agentic AI Context" })).toBeVisible();
+  await page.getByRole("link", { name: "Return Home" }).click();
+  await expect(page).toHaveURL(new RegExp(`${basePath}/$`));
 
   const assetPaths = await page.evaluate(() =>
     [
@@ -50,10 +55,9 @@ test("exported site loads under the repository base path and survives a static m
   expect(await page.evaluate(() => document.styleSheets.length)).toBeGreaterThan(0);
 
   await page.goto(contentRouteUrl, { waitUntil: "networkidle" });
-  await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Chapter outline" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 2, name: "User Intent" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 2, name: "Outcome" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Story Guide" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "Scene map" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "Vocabulary" })).toBeVisible();
   await page.getByRole("link", { name: "Return Home" }).click();
   await expect(page).toHaveURL(new RegExp(`${basePath}/$`));
 

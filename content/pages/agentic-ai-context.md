@@ -18,3 +18,5 @@ This supporting page gives readers a short orientation before or after the canon
 - Grounding: the information the agent uses to stay aligned with the situation.
 - Execution: the action the agent takes in the environment.
 - Outcome: the result the viewer should understand.
+
+[Return Home](../)

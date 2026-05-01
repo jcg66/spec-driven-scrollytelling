@@ -6,7 +6,6 @@ import { PresentationContent } from "@/components/content/PresentationContent";
 import { MarkdownContent } from "@/components/content/MarkdownContent";
 import { PageLayoutFactory } from "@/components/layouts";
 import { createContentRouteMetadata, createContentRoutePageModel, createStaticRouteParams, listRouteDocuments } from "@/lib/content";
-import { createRoutePath } from "@/lib/site-config";
 
 type ContentRoutePageProps = {
   params: Promise<{
@@ -51,9 +50,6 @@ export default async function ContentRoutePage({ params }: ContentRoutePageProps
         ) : (
           <MarkdownContent blocks={pageModel.parsedContent.blocks} />
         )}
-        <p>
-          <a href={createRoutePath()}>Return Home</a>
-        </p>
       </PageLayoutFactory>
     </AppShell>
   );

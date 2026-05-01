@@ -1,33 +1,28 @@
 ---
-title: Inside the Agentic Brain
-summary: A scrollytelling route about how an AI agent moves from request to perception, planning, action, and outcome.
-layout: presentation
+title: Story Guide
+summary: Supporting context that explains the five-scene homepage story without competing with it.
+layout: standard
 slug: inside-the-agentic-brain
 order: 1
-seoTitle: Inside the Agentic Brain
-seoDescription: A presentation-style story explaining the planner, grounder, and action loop inside an AI agent.
-heroImage: images/inside-the-agentic-brain-hero.png
+seoTitle: Story Guide
+seoDescription: A supporting reading page that explains the scene map and vocabulary used by the homepage story.
 ---
-# Inside the Agentic Brain
+This supporting page maps the homepage story without replacing it.
 
-This route is the canonical presentation path for the project. The chapter spine is ordered to match the narrative flow from user intent to outcome.
+## Scene map
 
-## User Intent
+- Spark: the request arrives and the story opens in isolation.
+- Deconstruction: the request becomes a set of smaller tasks.
+- Digital Eye: the agent grounds its plan in what is visible.
+- Execution Loop: the agent acts and checks feedback.
+- Outcome: the result lands and the page resolves.
 
-The narrative begins with a request and the goal the agent is trying to satisfy.
+## Vocabulary
 
-## Planning
+- Intent: the user's goal or request.
+- Planning: the steps the agent uses to organize its response.
+- Grounding: the information the agent uses to stay aligned with the situation.
+- Execution: the action the agent takes in the environment.
+- Outcome: the result the viewer should understand.
 
-The agent decomposes the request into steps, constraints, and decisions.
-
-## Visual Grounding
-
-The story connects the plan to observable context so the viewer can follow what the agent knows.
-
-## Execution
-
-The agent acts, checks feedback, and continues moving toward the goal.
-
-## Outcome
-
-The route closes by showing the result and the point of the whole sequence.
+[Return Home](../)
