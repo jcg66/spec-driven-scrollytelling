@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Use motion as explanatory infrastructure for the scrollytelling experience, not as decorative excess.
+Use motion as explanatory infrastructure for the single-page scrollytelling experience, not as decorative excess.
 
 ## Requirements
 
 - Scroll-linked motion must reinforce the agent narrative: intent, decomposition, perception, action, and completion.
-- Motion primitives must behave differently when used in standard pages versus presentation slides where appropriate.
-- Presentation slides should support sticky-stage storytelling and a visible progress indicator that reflects meaningful progress through the sequence.
+- Motion primitives must behave differently when used in supporting pages versus the canonical presentation page where appropriate.
+- Presentation sections should support sticky-stage storytelling and a visible progress indicator that reflects meaningful progress through the single-page sequence.
 - Interaction design must degrade gracefully under reduced-motion preferences.
 - Motion state should remain predictable and testable rather than hidden behind ad hoc animation code.
 - Keyboard shortcuts or other step-navigation affordances are optional, but if implemented they must not interfere with native scrolling, focus order, or assistive technology behavior.
@@ -17,7 +17,7 @@ Use motion as explanatory infrastructure for the scrollytelling experience, not 
 
 - Reveal behavior.
 - Scroll progress handling.
-- Sticky slide progression.
+- Sticky section progression.
 - Progress indicators and any optional keyboard affordances or other navigation helpers that materially improve comprehension.
 
 ## Non-Goals
@@ -29,8 +29,8 @@ Use motion as explanatory infrastructure for the scrollytelling experience, not 
 ## Acceptance Criteria
 
 - Each major visual transition maps to a narrative change the visitor can understand.
-- Sticky-slide progression is stable on desktop and usable on mobile.
-- The visible progress indicator updates consistently as the visitor moves through the presentation sequence.
+- Sticky-section progression is stable on desktop and usable on mobile.
+- The visible progress indicator updates consistently as the visitor moves through the single-page presentation sequence.
 - Reduced-motion mode displays readable end states without broken spacing or missing information.
 - Motion primitives are reusable across scenes instead of being implemented as one-off page hacks.
 

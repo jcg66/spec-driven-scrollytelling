@@ -13,8 +13,8 @@ Create a Markdown-first content system that lets the project tell a structured t
 - The schema may include optional fields such as `order`, `seoTitle`, `seoDescription`, `heroImage`, and `draft`, but their semantics must be documented and validated.
 - `slug` must be a unique slash-delimited public route with no leading or trailing slash; duplicate, reserved, or invalid slugs must fail validation.
 - Content loading must validate frontmatter at build time using a formal schema.
-- The routing layer must support a homepage and additional pages derived from content files.
-- The content model must support both explanatory long-form pages and presentation-style scrollytelling pages.
+- The routing layer must support a single canonical public homepage route for the story; any other Markdown stays non-routeable unless explicitly promoted.
+- The content model must support both supporting explanatory content and the single presentation-style scrollytelling page.
 - Presentation slide boundaries must be encoded with one documented delimiter rule; the same source content must always parse into the same slide sequence.
 - Content parsing rules must be deterministic and documented well enough for future contributors to author pages safely.
 
@@ -39,7 +39,7 @@ Create a Markdown-first content system that lets the project tell a structured t
 - Invalid or incomplete frontmatter fails during validation instead of degrading silently in the UI.
 - Route generation matches the set of valid content files exactly, excluding only content explicitly marked non-routeable by the documented schema.
 - Reference Markdown used for research or story development is ignored by route generation unless it is explicitly converted into a documented published-content source.
-- Presentation pages can express chapter or slide boundaries through the chosen content format.
+- The canonical narrative page can express chapter or section boundaries through the chosen content format.
 - Reserved routes such as the homepage, `404`, and any app-owned utility routes cannot be claimed accidentally by content.
 - Authors can add or update narrative content without editing routing code for each page.
 

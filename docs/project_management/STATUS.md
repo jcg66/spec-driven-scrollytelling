@@ -18,7 +18,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Deployment target: GitHub Pages project site under `https://<account>.github.io/<repository>/`.
 - Core delivery constraint: everything must work as a static export under a non-root base path.
 - Content model direction: Markdown-first with a dedicated homepage source, routeable page sources, and separate reference-only Markdown.
-- Main experience direction: one canonical presentation-style scrollytelling route plus supporting standard pages.
+- Main experience direction: one canonical single-page scrolling story plus supporting reference material.
 - QA direction: verify against the exported static artifact served under the GitHub Pages-style base path.
 
 ## Active Focus

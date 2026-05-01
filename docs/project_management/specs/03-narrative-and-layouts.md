@@ -2,13 +2,13 @@
 
 ## Purpose
 
-Translate the project objective into a narrative system with page layouts that support both overview reading and immersive scrollytelling.
+Translate the project objective into one continuous narrative page with layout support for overview reading, immersive scrollytelling, and secondary support content.
 
 ## Requirements
 
-- The site must support at least two layout modes: `standard` and `presentation`.
+- The site must support a single canonical presentation page, while standard pages may exist only for supporting content that does not fragment the main scroll experience.
 - The narrative should progress from user intent, to planning, to visual grounding, to execution, to outcome.
-- The project must designate one canonical main scrollytelling route, and that route must be the primary entry point used by navigation, QA, and release review.
+- The project must designate the homepage as the canonical main scrollytelling route, and that route must be the primary entry point used by navigation, QA, and release review.
 - The presentation mode must preserve chapter clarity even when motion is reduced or disabled.
 - Standard pages must support supporting content such as context, glossary material, or reflections without inheriting presentation-only behavior.
 - The layout system must allow content authors to select the correct page mode through metadata rather than hard-coded routes.
@@ -29,13 +29,13 @@ Translate the project objective into a narrative system with page layouts that s
 
 ## Acceptance Criteria
 
-- The canonical main scrollytelling route communicates the full agent loop in a stable sequence.
-- Standard pages and presentation pages share the same content system while rendering appropriately different experiences.
+- The canonical homepage communicates the full agent loop in a stable sequence.
+- The single public story page and any supporting pages share the same content system while rendering appropriately different experiences.
 - Layout selection is explicit, deterministic, and visible in page metadata.
 - The presentation experience remains comprehensible as a sequence of sections when advanced animation is unavailable.
 
 ## Automated Verification
 
 - Component or integration tests verify layout selection based on frontmatter and the route designation used for the main narrative.
-- Browser tests confirm that standard and presentation pages both render and expose expected landmark content.
+- Browser tests confirm that the canonical scroll page and supporting pages render and expose expected landmark content.
 - Reduced-motion e2e coverage confirms the presentation narrative still appears in the correct order.

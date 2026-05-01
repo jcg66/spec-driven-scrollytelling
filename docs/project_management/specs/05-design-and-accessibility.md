@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Define the visual system and accessibility bar for a premium-feeling but readable technical story.
+Define the visual system and accessibility bar for a premium-feeling but readable single-page technical story.
 
 ## Requirements
 
@@ -11,6 +11,7 @@ Define the visual system and accessibility bar for a premium-feeling but readabl
 - Typography must separate narrative prose from technical annotations clearly.
 - Font loading and fallback stacks must be defined explicitly so the experience degrades cleanly in static export and slow-network conditions.
 - The experience must remain responsive across common mobile and desktop viewports.
+- The main story must read cleanly as one continuous page with clear section transitions and in-page navigation.
 - A skip link, semantic landmarks, logical heading structure, keyboard access, visible focus states, and sufficient contrast are mandatory.
 - Body text and essential interface text must meet WCAG AA contrast expectations, and meaning must not depend on color alone.
 - Reading order in the DOM must match the intended narrative order even when the visual layout uses sticky panels, overlays, or split-screen presentation.

@@ -2,7 +2,7 @@
 
 ## Spec Intent
 
-Spec 03 turns the content system from Spec 02 into a coherent narrative experience. The goal is to make one canonical scrollytelling route feel deliberate, keep supporting pages clearly separate, and ensure layout structure stays understandable even when motion is reduced or unavailable.
+Spec 03 turns the content system from Spec 02 into a coherent single-page narrative experience. The goal is to make one canonical scroll route feel deliberate, keep supporting pages clearly secondary, and ensure layout structure stays understandable even when motion is reduced or unavailable.
 
 ## Needed Inputs and Integration Model
 
@@ -16,11 +16,11 @@ The integration rule should stay explicit:
 
 ## Sprint Breakdown
 
-### Sprint 03A: Canonical Narrative Route and Chapter Spine
+### Sprint 03A: Canonical Single-Page Narrative and Chapter Spine
 
 **Goal**
 
-Designate and stabilize the primary scrollytelling route so navigation, QA, and release review all point at the same story entry.
+Designate and stabilize the primary single-page story route so navigation, QA, and release review all point at the same story entry.
 
 **Scope**
 
@@ -34,18 +34,18 @@ Designate and stabilize the primary scrollytelling route so navigation, QA, and 
 
 - The canonical route is explicit in code and documentation.
 - Narrative order is deterministic and visible in the content model.
-- Supporting standard content exists alongside the main presentation route.
+- Supporting standard content exists as secondary material around the main presentation page.
 
 **Verification**
 
 - Unit or integration tests confirm canonical route designation and chapter order.
-- Browser coverage confirms the canonical route is the primary narrative entry point.
+- Browser coverage confirms the homepage is the primary narrative entry point.
 
-### Sprint 03B: Presentation Layout Orchestration
+### Sprint 03B: Single-Page Presentation Layout Orchestration
 
 **Goal**
 
-Render presentation content as a structured chapter sequence with clear landmarks and reading order.
+Render the single presentation page as a structured chapter sequence with clear landmarks and reading order.
 
 **Scope**
 
@@ -56,14 +56,14 @@ Render presentation content as a structured chapter sequence with clear landmark
 
 **Exit Criteria**
 
-- Presentation pages expose a stable chapter or section structure.
-- Standard pages remain visually and semantically distinct from presentation pages.
+- The presentation page exposes a stable chapter or section structure.
+- Supporting pages remain visually and semantically distinct from the presentation page.
 - Layout selection stays metadata-driven and deterministic.
 
 **Verification**
 
 - Component or integration tests cover standard versus presentation rendering.
-- Browser tests confirm both layout modes expose expected landmarks.
+- Browser tests confirm the presentation page and supporting pages expose expected landmarks.
 
 ### Sprint 03C: Motion-Independent Presentation Clarity
 
@@ -89,23 +89,23 @@ Keep the presentation comprehensible when motion is reduced or unavailable.
 - Browser tests run with reduced-motion preferences enabled.
 - Component tests cover any observable fallback logic.
 
-### Sprint 03D: Release-Review QA and Navigation Coverage
+### Sprint 03D: Single-Page Release-Review QA and Navigation Coverage
 
 **Goal**
 
-Prove the narrative system works in the exported artifact and is ready for release review.
+Prove the single-page narrative system works in the exported artifact and is ready for release review.
 
 **Scope**
 
 - Wire top-level navigation or review helpers to the canonical route.
 - Confirm the exported site still works under the repository base path.
-- Add browser coverage for the homepage, canonical presentation route, and at least one supporting standard page.
+- Add browser coverage for the homepage and at least one supporting standard page.
 - Document the release-review path for the main narrative.
 
 **Exit Criteria**
 
 - The canonical route is the primary reviewed path for the story.
-- Supporting standard pages are reachable and distinct from the presentation route.
+- Supporting standard pages are reachable and remain secondary to the single-page narrative route.
 - Exported navigation and review flows are verified under the Pages-style base path.
 
 **Verification**
@@ -117,7 +117,7 @@ Prove the narrative system works in the exported artifact and is ready for relea
 
 ### Ordering Check
 
-- `03A` must come first because the canonical route and chapter spine need to exist before layout and fallback work can be trusted.
+- `03A` must come first because the single-page route and chapter spine need to exist before layout and fallback work can be trusted.
 - `03B` follows because presentation structure and layout landmarks depend on the narrative spine being stable.
 - `03C` comes next because motion-independent clarity should be added after the structural layout contract exists.
 - `03D` comes last because release-review and exported-artifact coverage should validate the completed narrative flow rather than an intermediate fragment.
@@ -139,12 +139,12 @@ Prove the narrative system works in the exported artifact and is ready for relea
 ### Adjustments Applied
 
 - The sprint sequence separates canonical route designation, layout orchestration, motion-independent readability, and release-review QA so failures can be isolated.
-- The existing `standard` and `presentation` split is preserved instead of introducing extra page modes too early.
-- Supporting pages are treated as part of the narrative system, not as unrelated content pages.
+- The existing `standard` and `presentation` split is preserved for supporting content instead of introducing extra story routes too early.
+- Supporting pages are treated as secondary content, not as alternate story entry points.
 - Exported-artifact verification is attached to the final sprint so Spec 03 closes with production-shape evidence.
 
 ## Ready-to-Implement Recommendation
 
-Start with `Sprint 03A: Canonical Narrative Route and Chapter Spine`.
+Start with `Sprint 03A: Canonical Single-Page Narrative and Chapter Spine`.
 
 That sprint locks the route and narrative order the rest of Spec 03 depends on. If the canonical route is not explicit, later layout and reduced-motion work will be difficult to verify.
