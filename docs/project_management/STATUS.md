@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 in progress |
 | Current spec | Spec 02: Content and Routing in progress |
-| Current sprint | Sprint 02C ready to start |
+| Current sprint | Sprint 02C complete |
 | Next recommended spec | Spec 02: Content and Routing |
-| Last completed work | Implemented and verified Sprint 02B: Content Discovery and Route Registry |
+| Last completed work | Implemented and verified Sprint 02C: Markdown Parsing and Presentation Segmentation |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 02C: Markdown Parsing and Presentation Segmentation`.
+- Start `Sprint 02D: App Router Integration for Content-Driven Pages`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -48,4 +48,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 02A verification passed with `npm test`, `npm run build`, and `npm run verify:export`.
 - Sprint 02B added deterministic route-registry validation for duplicate and app-owned slugs, wired static param generation through the validated registry, and extended unit coverage for the new failure cases.
 - Sprint 02B verification passed with `npm run test -- tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run build`.
+- Sprint 02C added a deterministic custom Markdown parser, a single `<!-- slide -->` presentation delimiter, structured parser exports, and unit coverage for standard and presentation-page parsing.
+- Sprint 02C verification passed with `npm run test -- tests/unit/content-repository.test.ts tests/unit/route-params.test.ts tests/unit/markdown-parser.test.ts` and `npm run build`.
 

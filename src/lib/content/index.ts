@@ -1,11 +1,19 @@
 export type { HomeDocument, LayoutMode, RouteDocument } from "./schema";
 export type { RouteRegistryEntry } from "./content-repository";
+export type {
+  MarkdownBlockNode,
+  MarkdownInlineNode,
+  ParsedMarkdownDocument,
+  ParsedPresentationDocument,
+  ParsedPresentationSlide,
+} from "./markdown-parser";
 export {
   parseMarkdownSource,
   validateHomeDocumentSource,
   validateRouteDocumentSource,
 } from "./schema";
 export { createRouteRegistry, getHomeDocument, getRouteDocumentBySlug, listRouteDocuments } from "./content-repository";
+export { parseMarkdownBlocks, parsePresentationMarkdown, PRESENTATION_SLIDE_DELIMITER } from "./markdown-parser";
 export {
   HOME_SOURCE_PATH,
   REFERENCE_CONTENT_DIRECTORY,
