@@ -4,6 +4,7 @@ test("exported site loads under the repository base path and survives a static m
   const sameOriginPrefix = baseURL || "";
   const basePath = new URL(sameOriginPrefix).pathname.replace(/\/$/, "");
   const homeUrl = `${sameOriginPrefix}/`;
+  const contentRouteUrl = `${sameOriginPrefix}/inside-the-agentic-brain/`;
   const missingRouteUrl = `${sameOriginPrefix}/missing/route/`;
   const failedRequests: string[] = [];
   const errorResponses: string[] = [];
@@ -41,6 +42,16 @@ test("exported site loads under the repository base path and survives a static m
   }
 
   expect(await page.evaluate(() => document.styleSheets.length)).toBeGreaterThan(0);
+
+  await page.goto(contentRouteUrl, { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
+  await expect(
+    page.getByText(
+      "This source is the first published routeable-page contract for Spec 02. Later sprints will parse this Markdown into deterministic page structures and connect it to the App Router.",
+    ),
+  ).toBeVisible();
+  await page.getByRole("link", { name: "Return Home" }).click();
+  await expect(page).toHaveURL(new RegExp(`${basePath}/$`));
 
   await page.goto(missingRouteUrl, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Page Not Found" })).toBeVisible();

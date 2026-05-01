@@ -7,12 +7,14 @@ export type {
   ParsedPresentationDocument,
   ParsedPresentationSlide,
 } from "./markdown-parser";
+export type { ContentRoutePageModel } from "./content-pages";
 export {
   parseMarkdownSource,
   validateHomeDocumentSource,
   validateRouteDocumentSource,
 } from "./schema";
 export { createRouteRegistry, getHomeDocument, getRouteDocumentBySlug, listRouteDocuments } from "./content-repository";
+export { createContentRouteMetadata, createContentRoutePageModel } from "./content-pages";
 export { parseMarkdownBlocks, parsePresentationMarkdown, PRESENTATION_SLIDE_DELIMITER } from "./markdown-parser";
 export {
   HOME_SOURCE_PATH,
