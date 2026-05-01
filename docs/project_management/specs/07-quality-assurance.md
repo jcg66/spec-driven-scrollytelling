@@ -27,10 +27,10 @@ The project should use layered verification:
 - Frontmatter schema validation and invalid-content failure behavior.
 - Route generation and base-path correctness.
 - Exported-asset loading and internal navigation correctness under the repository subpath.
-- Layout mode selection and chapter rendering.
+- Layout mode selection and chapter rendering for the five named story scenes on the public story page.
 - Presentation-page progression and reduced-motion behavior.
-- Embedded visualization parsing and rendering.
-- Primary navigation and at least one full scrollytelling path.
+- Embedded visualization parsing and rendering, including fallback rendering for heavy visuals.
+- Primary navigation and the single-page scrolling story path.
 
 ## QA Gates
 
@@ -44,6 +44,8 @@ The project should use layered verification:
 - Review the main story on desktop and mobile widths.
 - Review with reduced-motion enabled.
 - Confirm keyboard traversal across navigation and major interactive elements.
+- Confirm the five named scenes remain understandable when animation is absent or simplified.
+- Confirm any secondary support content is not treated as part of the public story path.
 - Confirm exported pages behave correctly under the target base path.
 
 ## Acceptance Criteria

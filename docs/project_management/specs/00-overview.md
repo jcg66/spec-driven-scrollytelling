@@ -13,6 +13,8 @@ By the end of the experience, a visitor should understand:
 - software interaction is shifting from manual app-by-app operation toward delegated workflows,
 - and this shift matters because it connects human intent to real digital outcomes.
 
+The intended story flow is a five-scene single-page arc: Spark, Deconstruction, Digital Eye, Execution Loop, and Outcome.
+
 ## Primary Audience
 
 - Students and general technical audiences who know what AI is but do not yet have a concrete mental model of how agents operate.
@@ -38,6 +40,7 @@ By the end of the experience, a visitor should understand:
 
 - The narrative remains coherent from first scroll to final outcome on one continuous page.
 - Each major chapter communicates a distinct part of the agent loop within that page.
+- The major story beats are visually distinct and map to the five named scenes from the reference scripts.
 - The visual language reinforces the explanation instead of distracting from it.
 - Content, layout, motion, and embedded visuals work together as a single explanatory system.
 

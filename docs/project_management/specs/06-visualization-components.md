@@ -8,12 +8,14 @@ Support embedded explanatory visuals inside Markdown so the project can combine 
 
 - The content system must support a defined set of embedded visualization components authored from Markdown through one documented embedding contract.
 - Embedded components must serve explanatory goals tied to the agent narrative, such as planner decomposition, visual grounding, event logs, timelines, or capability summaries.
+- Story-specific visual patterns such as a brain-core hero visualization, bounding-box overlays, terminal/action logs, and a final success state should be achievable as reusable components or composed layouts, not only as bespoke page code.
 - Supported embedded components for v1 must be enumerated explicitly. The minimum supported set is `stat-grid`, `timeline`, `event-log`, `capability-list`, `decision-flow`, and `code-sample`.
 - Component insertion must be schema-driven or convention-driven enough to prevent arbitrary fragile markup.
 - The embedding syntax must be deterministic: fenced code blocks use an info string of the form `viz:<component-id>`, and the block body must validate against the schema for that component.
 - Visualization components must remain stylistically consistent with the core design system.
 - Unsupported component identifiers or malformed payloads must fail clearly during validation rather than silently rendering broken UI.
 - Components must have sensible fallback rendering for reduced-motion or low-interactivity contexts.
+- High-cost visual effects such as WebGL, shader work, or canvas-based animation must be optional enhancements with clear fallback content.
 
 ## In Scope
 
