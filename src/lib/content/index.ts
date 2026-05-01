@@ -7,14 +7,20 @@ export type {
   ParsedPresentationDocument,
   ParsedPresentationSlide,
 } from "./markdown-parser";
-export type { ContentRoutePageModel } from "./content-pages";
+export type { ContentRoutePageModel, NarrativeChapter } from "./content-pages";
 export {
   parseMarkdownSource,
   validateHomeDocumentSource,
   validateRouteDocumentSource,
 } from "./schema";
 export { createRouteRegistry, getHomeDocument, getRouteDocumentBySlug, listRouteDocuments } from "./content-repository";
-export { createContentRouteMetadata, createContentRoutePageModel } from "./content-pages";
+export {
+  CANONICAL_NARRATIVE_ROUTE,
+  CANONICAL_NARRATIVE_SPINE,
+  createContentRouteMetadata,
+  createContentRoutePageModel,
+  getCanonicalNarrativeRouteDocument,
+} from "./content-pages";
 export { parseMarkdownBlocks, parsePresentationMarkdown, PRESENTATION_SLIDE_DELIMITER } from "./markdown-parser";
 export {
   HOME_SOURCE_PATH,

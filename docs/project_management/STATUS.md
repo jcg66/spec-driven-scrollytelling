@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 in progress |
 | Current spec | Spec 03: Narrative and Layouts in progress |
-| Current sprint | Sprint 03A ready to start |
+| Current sprint | Sprint 03B ready to start |
 | Next recommended spec | Spec 03: Narrative and Layouts |
-| Last completed work | Implemented and verified Sprint 02D: App Router Integration for Content-Driven Pages |
+| Last completed work | Implemented and verified Sprint 03A: Canonical Narrative Route and Chapter Spine |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 03A: Canonical Narrative Route and Chapter Spine`.
+- Start `Sprint 03B: Presentation Layout Orchestration`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -53,4 +53,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 02D wired a dynamic content route at `src/app/[...slug]/page.tsx`, added content-route metadata and markdown rendering helpers, extended browser coverage to a published content route, and preserved static-miss handling.
 - Sprint 02D verification passed with `npm run test` and `npm run verify:export`.
 - Spec 03 QA against the current worktree found that layout selection exists, but canonical route designation, chapter/sticky structure, motion-independent presentation fallback, and release-review browser coverage are still incomplete.
+- Sprint 03A added an explicit canonical narrative route constant, encoded the chapter spine in the main presentation Markdown, added a supporting standard context page, linked the homepage to the canonical route, and extended tests and browser coverage.
+- Sprint 03A verification passed with `npm run test` and `npm run verify:export`.
 

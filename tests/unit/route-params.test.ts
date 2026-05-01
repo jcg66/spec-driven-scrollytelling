@@ -20,6 +20,9 @@ describe("content route param helpers", () => {
   it("produce static route params from validated Markdown content", () => {
     expect(createStaticRouteParams(listRouteDocuments())).toEqual([
       {
+        slug: ["agentic-ai-context"],
+      },
+      {
         slug: ["inside-the-agentic-brain"],
       },
     ]);

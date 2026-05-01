@@ -52,16 +52,18 @@ describe("content repository seams", () => {
     const documents = listRouteDocuments();
 
     expect(routePagePaths.some((sourcePath) => sourcePath.endsWith("draft-story.md"))).toBe(true);
-    expect(documents).toHaveLength(1);
-    expect(documents.map((document) => document.slug)).toEqual(["inside-the-agentic-brain"]);
+    expect(documents).toHaveLength(2);
+    expect(documents.map((document) => document.slug)).toEqual(["agentic-ai-context", "inside-the-agentic-brain"]);
   });
 
   it("loads routeable documents from published Markdown sources only", () => {
     const documents = listRouteDocuments();
 
-    expect(documents).toHaveLength(1);
-    expect(documents[0]?.slug).toBe("inside-the-agentic-brain");
-    expect(documents[0]?.layout).toBe("presentation");
+    expect(documents).toHaveLength(2);
+    expect(documents[0]?.slug).toBe("agentic-ai-context");
+    expect(documents[0]?.layout).toBe("standard");
+    expect(documents[1]?.slug).toBe("inside-the-agentic-brain");
+    expect(documents[1]?.layout).toBe("presentation");
     expect(getRouteDocumentBySlug(["inside-the-agentic-brain"])?.title).toBe("Inside the Agentic Brain");
     expect(getRouteDocumentBySlug(["future", "page"])).toBeNull();
   });

@@ -1,8 +1,19 @@
 import { describe, expect, it } from "vitest";
 
-import { createContentRouteMetadata, createContentRoutePageModel } from "@/lib/content";
+import {
+  CANONICAL_NARRATIVE_ROUTE,
+  CANONICAL_NARRATIVE_SPINE,
+  createContentRouteMetadata,
+  createContentRoutePageModel,
+  getCanonicalNarrativeRouteDocument,
+} from "@/lib/content";
 
 describe("content route pages", () => {
+  it("exposes the canonical narrative route explicitly", () => {
+    expect(CANONICAL_NARRATIVE_ROUTE).toBe("inside-the-agentic-brain");
+    expect(getCanonicalNarrativeRouteDocument()?.slug).toBe(CANONICAL_NARRATIVE_ROUTE);
+  });
+
   it("creates metadata from validated route documents", () => {
     const pageModel = createContentRoutePageModel(["inside-the-agentic-brain"], {
       basePath: "/preview-site",
@@ -33,6 +44,13 @@ describe("content route pages", () => {
       type: "heading",
       level: 1,
     });
+    expect(
+      pageModel?.parsedContent.blocks
+        .filter((block) => block.type === "heading")
+        .map((block) => (block.type === "heading" ? block.inlines[0] : null))
+        .filter(Boolean)
+        .map((node) => (node && "value" in node ? node.value : "")),
+    ).toEqual(["Inside the Agentic Brain", ...CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.title)]);
   });
 
   it("returns null for unknown content routes", () => {
@@ -52,5 +70,15 @@ describe("content route pages", () => {
       title: "Inside the Agentic Brain",
       description: "A presentation-style story explaining the planner, grounder, and action loop inside an AI agent.",
     });
+  });
+
+  it("defines a deterministic narrative spine for the canonical route", () => {
+    expect(CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.key)).toEqual([
+      "intent",
+      "planning",
+      "grounding",
+      "execution",
+      "outcome",
+    ]);
   });
 });

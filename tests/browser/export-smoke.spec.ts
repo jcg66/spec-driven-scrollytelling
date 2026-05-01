@@ -24,6 +24,11 @@ test("exported site loads under the repository base path and survives a static m
   await page.goto(homeUrl, { waitUntil: "networkidle" });
 
   await expect(page.getByRole("heading", { level: 1, name: "Static Export Foundation" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Start the canonical narrative" })).toBeVisible();
+  await page.getByRole("link", { name: "Start the canonical narrative" }).click();
+  await expect(page).toHaveURL(new RegExp(`${basePath}/inside-the-agentic-brain/$`));
+  await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "User Intent" })).toBeVisible();
 
   const assetPaths = await page.evaluate(() =>
     [
@@ -45,11 +50,8 @@ test("exported site loads under the repository base path and survives a static m
 
   await page.goto(contentRouteUrl, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
-  await expect(
-    page.getByText(
-      "This source is the first published routeable-page contract for Spec 02. Later sprints will parse this Markdown into deterministic page structures and connect it to the App Router.",
-    ),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "User Intent" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "Outcome" })).toBeVisible();
   await page.getByRole("link", { name: "Return Home" }).click();
   await expect(page).toHaveURL(new RegExp(`${basePath}/$`));
 

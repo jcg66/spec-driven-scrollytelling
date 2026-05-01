@@ -2,7 +2,7 @@ import { AppShell } from "@/components/app/AppShell";
 import { PageLayoutFactory } from "@/components/layouts";
 import { Reveal } from "@/components/motion";
 import { VisualizationFrame } from "@/components/visualizations";
-import { getHomeDocument } from "@/lib/content";
+import { CANONICAL_NARRATIVE_ROUTE, getHomeDocument } from "@/lib/content";
 import { createCanonicalUrl, createRoutePath, DEFAULT_BASE_PATH, PRODUCTION_URL_SHAPE } from "@/lib/site-config";
 
 export default function HomePage() {
@@ -23,6 +23,9 @@ export default function HomePage() {
             <li key={highlight}>{highlight}</li>
           ))}
         </ul>
+        <p>
+          <a href={createRoutePath(CANONICAL_NARRATIVE_ROUTE)}>Start the canonical narrative</a>
+        </p>
         <Reveal>
           <VisualizationFrame
             label={homeDocument.visualization.label}
