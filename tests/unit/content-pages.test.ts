@@ -7,6 +7,7 @@ import {
   createContentRoutePageModel,
   getCanonicalNarrativeRouteDocument,
 } from "@/lib/content";
+import { buildPresentationNarrative } from "@/components/content/PresentationContent";
 
 describe("content route pages", () => {
   it("exposes the canonical narrative route explicitly", () => {
@@ -80,5 +81,19 @@ describe("content route pages", () => {
       "execution",
       "outcome",
     ]);
+  });
+
+  it("groups the canonical presentation body into an outline and chapter sections", () => {
+    const pageModel = createContentRoutePageModel([CANONICAL_NARRATIVE_ROUTE]);
+
+    if (!pageModel) {
+      throw new Error("Expected a canonical route model.");
+    }
+
+    const narrative = buildPresentationNarrative(pageModel.parsedContent.blocks);
+
+    expect(narrative.introBlocks.length).toBeGreaterThan(0);
+    expect(narrative.chapters.map((chapter) => chapter.title)).toEqual(CANONICAL_NARRATIVE_SPINE.map((chapter) => chapter.title));
+    expect(narrative.chapters[0]?.blocks.length).toBeGreaterThan(0);
   });
 });

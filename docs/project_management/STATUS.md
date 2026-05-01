@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 in progress |
 | Current spec | Spec 03: Narrative and Layouts in progress |
-| Current sprint | Sprint 03B ready to start |
+| Current sprint | Sprint 03C ready to start |
 | Next recommended spec | Spec 03: Narrative and Layouts |
-| Last completed work | Implemented and verified Sprint 03A: Canonical Narrative Route and Chapter Spine |
+| Last completed work | Implemented and verified Sprint 03B: Presentation Layout Orchestration |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 03B: Presentation Layout Orchestration`.
+- Start `Sprint 03C: Motion-Independent Presentation Clarity`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -55,4 +55,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Spec 03 QA against the current worktree found that layout selection exists, but canonical route designation, chapter/sticky structure, motion-independent presentation fallback, and release-review browser coverage are still incomplete.
 - Sprint 03A added an explicit canonical narrative route constant, encoded the chapter spine in the main presentation Markdown, added a supporting standard context page, linked the homepage to the canonical route, and extended tests and browser coverage.
 - Sprint 03A verification passed with `npm run test` and `npm run verify:export`.
+- Sprint 03B added a chapter-aware presentation renderer with outline and section landmarks, preserved standard-page rendering, and extended browser coverage to the supporting standard page.
+- Sprint 03B verification passed with `npm run test` and `npm run verify:export`.
 

@@ -28,7 +28,8 @@ test("exported site loads under the repository base path and survives a static m
   await page.getByRole("link", { name: "Start the canonical narrative" }).click();
   await expect(page).toHaveURL(new RegExp(`${basePath}/inside-the-agentic-brain/$`));
   await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 3, name: "User Intent" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Chapter outline" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "User Intent" })).toBeVisible();
 
   const assetPaths = await page.evaluate(() =>
     [
@@ -50,10 +51,15 @@ test("exported site loads under the repository base path and survives a static m
 
   await page.goto(contentRouteUrl, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 3, name: "User Intent" })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 3, name: "Outcome" })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Chapter outline" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "User Intent" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Outcome" })).toBeVisible();
   await page.getByRole("link", { name: "Return Home" }).click();
   await expect(page).toHaveURL(new RegExp(`${basePath}/$`));
+
+  await page.goto(`${sameOriginPrefix}/agentic-ai-context/`, { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { level: 1, name: "Agentic AI Context" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 3, name: "Vocabulary" })).toBeVisible();
 
   await page.goto(missingRouteUrl, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Page Not Found" })).toBeVisible();

@@ -84,6 +84,84 @@ a {
   border-color: rgba(122, 229, 160, 0.28);
 }
 
+.presentationLayout {
+  position: relative;
+}
+
+.presentationFlow {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.presentationOutline {
+  border: 1px solid rgba(122, 229, 160, 0.18);
+  border-radius: 1rem;
+  padding: 1rem 1.1rem;
+  background: rgba(5, 9, 18, 0.7);
+}
+
+.presentationOutlineLabel {
+  margin: 0;
+  color: #7ae5a0;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.presentationOutlineList {
+  margin: 0.75rem 0 0;
+  padding-left: 1.2rem;
+  color: #e5ebff;
+  line-height: 1.6;
+}
+
+.presentationOutlineList a {
+  text-decoration: none;
+}
+
+.presentationStage {
+  display: grid;
+  gap: 1rem;
+}
+
+.presentationPrelude,
+.presentationChapter {
+  padding: 1rem 1.1rem;
+  border: 1px solid rgba(122, 229, 160, 0.16);
+  border-radius: 1rem;
+  background: rgba(5, 9, 18, 0.62);
+}
+
+.presentationChapterIndex {
+  margin: 0;
+  color: #7ae5a0;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.presentationChapterHeading {
+  margin: 0.45rem 0 0;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  line-height: 1.1;
+}
+
+.presentationChapterBody {
+  margin-top: 0.9rem;
+}
+
+@media (min-width: 52rem) {
+  .presentationFlow {
+    grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .presentationOutline {
+    position: sticky;
+    top: 1.5rem;
+  }
+}
+
 .revealFrame {
   display: block;
 }
