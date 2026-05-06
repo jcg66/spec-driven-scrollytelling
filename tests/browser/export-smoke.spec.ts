@@ -135,3 +135,21 @@ test("homepage story remains readable with reduced motion", async ({ page, baseU
   await expect(page.getByRole("progressbar", { name: "Story progress" })).toHaveAttribute("aria-valuetext", /Scene 3 of 5: Digital Eye/);
   await expect(page.locator('.presentationChapter[data-active="true"]')).toContainText("Digital Eye");
 });
+
+test("homepage motion completes the full exported story sequence", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  const progressBar = page.getByRole("progressbar", { name: "Story progress" });
+
+  await expect(progressBar).toHaveAttribute("aria-valuenow", "1");
+
+  await page.getByRole("link", { name: "5. Outcome" }).click();
+
+  await expect(progressBar).toHaveAttribute("aria-valuenow", "5");
+  await expect(progressBar).toHaveAttribute("aria-valuetext", /Scene 5 of 5: Outcome/);
+  await expect(page.locator('.presentationChapter[data-active="true"]')).toContainText("Outcome");
+  await expect(page.getByRole("link", { name: "5. Outcome" })).toHaveAttribute("aria-current", "location");
+});
