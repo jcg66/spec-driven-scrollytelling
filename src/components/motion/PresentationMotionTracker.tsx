@@ -25,53 +25,72 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
       return;
     }
 
-    const visibilityByChapter = new Map<string, number>();
+    const syncActiveSectionState = (chapterId: string | null) => {
+      for (const section of sectionElements) {
+        const isActive = section.id === chapterId;
+
+        if (isActive) {
+          section.dataset.active = "true";
+        } else {
+          delete section.dataset.active;
+        }
+      }
+    };
+
+    let frameId: number | null = null;
 
     const updateActiveChapter = () => {
+      const viewportCenter = window.innerHeight / 2;
       let bestChapterId: string | null = null;
-      let bestVisibility = -1;
+      let bestDistance = Number.POSITIVE_INFINITY;
 
-      for (const chapter of chapters) {
-        const visibility = visibilityByChapter.get(chapter.id) ?? 0;
+      for (const section of sectionElements) {
+        const sectionRect = section.getBoundingClientRect();
 
-        if (visibility > bestVisibility) {
-          bestVisibility = visibility;
-          bestChapterId = chapter.id;
+        if (sectionRect.bottom <= 0 || sectionRect.top >= window.innerHeight) {
+          continue;
+        }
+
+        const sectionCenter = sectionRect.top + sectionRect.height / 2;
+        const distanceToCenter = Math.abs(sectionCenter - viewportCenter);
+
+        if (distanceToCenter < bestDistance) {
+          bestDistance = distanceToCenter;
+          bestChapterId = section.id;
         }
       }
 
       if (bestChapterId) {
+        syncActiveSectionState(bestChapterId);
         setActiveChapterId((current) => (current === bestChapterId ? current : bestChapterId));
       }
     };
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          const chapterId = entry.target.getAttribute("id");
+    syncActiveSectionState(activeChapterId);
 
-          if (!chapterId) {
-            continue;
-          }
+    const scheduleUpdate = () => {
+      if (frameId !== null) {
+        return;
+      }
 
-          visibilityByChapter.set(chapterId, entry.isIntersecting ? entry.intersectionRatio : 0);
-        }
-
+      frameId = window.requestAnimationFrame(() => {
+        frameId = null;
         updateActiveChapter();
-      },
-      {
-        root: null,
-        rootMargin: "-18% 0px -48% 0px",
-        threshold: [0.2, 0.35, 0.5, 0.75],
-      },
-    );
+      });
+    };
 
-    sectionElements.forEach((section) => {
-      observer.observe(section);
-    });
+    updateActiveChapter();
+
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
 
     return () => {
-      observer.disconnect();
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
     };
   }, [chapters, containerId]);
 
@@ -94,6 +113,7 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
         <div
           className="presentationMotionTrack"
           role="progressbar"
+          aria-label="Story progress"
           aria-valuemin={1}
           aria-valuemax={motionState.totalChapters}
           aria-valuenow={motionState.activeChapterIndex + 1}

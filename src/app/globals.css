@@ -179,6 +179,15 @@ a {
   background: rgba(5, 9, 18, 0.62);
 }
 
+.presentationChapter[data-active="true"] {
+  border-color: rgba(122, 229, 160, 0.46);
+  box-shadow: 0 0 0 1px rgba(122, 229, 160, 0.12), 0 18px 40px rgba(0, 0, 0, 0.24);
+}
+
+.presentationChapter[data-active="true"] .presentationChapterHeading {
+  color: #7ae5a0;
+}
+
 .presentationChapterIndex {
   margin: 0;
   color: #7ae5a0;
@@ -265,5 +274,9 @@ a {
 
   .presentationMotionFill {
     transition: none;
+  }
+
+  .presentationChapter[data-active="true"] {
+    box-shadow: none;
   }
 }
