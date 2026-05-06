@@ -153,3 +153,30 @@ test("homepage motion completes the full exported story sequence", async ({ page
   await expect(page.locator('.presentationChapter[data-active="true"]')).toContainText("Outcome");
   await expect(page.getByRole("link", { name: "5. Outcome" })).toHaveAttribute("aria-current", "location");
 });
+
+test("homepage typography uses explicit system tokens", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  const tokens = await page.locator(":root").evaluate((element) => {
+    const styles = getComputedStyle(element);
+
+    return {
+      body: styles.getPropertyValue("--font-body").trim(),
+      display: styles.getPropertyValue("--font-display").trim(),
+      mono: styles.getPropertyValue("--font-mono").trim(),
+    };
+  });
+
+  const bodyFontSize = await page.locator("body").evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
+  const titleFontSize = await page.locator(".title").first().evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
+  const chapterHeadingFontSize = await page.locator(".presentationChapterHeading").first().evaluate((element) => parseFloat(getComputedStyle(element).fontSize));
+
+  expect(tokens.body).toContain("Aptos");
+  expect(tokens.display).toContain("Aptos Display");
+  expect(tokens.mono).toContain("Cascadia Mono");
+  expect(titleFontSize).toBeGreaterThan(bodyFontSize);
+  expect(chapterHeadingFontSize).toBeGreaterThan(bodyFontSize);
+});
