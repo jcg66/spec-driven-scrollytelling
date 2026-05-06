@@ -52,6 +52,33 @@ a {
   color: inherit;
 }
 
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.skipLink {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 30;
+  padding: 0.7rem 0.95rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  transform: translateY(-180%);
+  transition: transform 160ms ease;
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+}
+
 ::selection {
   background: rgba(122, 229, 160, 0.24);
   color: var(--color-text);
@@ -62,6 +89,10 @@ a {
   display: grid;
   place-items: center;
   padding: 3rem var(--space-5);
+}
+
+#main-content {
+  scroll-margin-top: 1rem;
 }
 
 .shellFrame {
@@ -221,6 +252,86 @@ a {
   background: var(--color-surface-soft);
 }
 
+.presentationChapter {
+  position: relative;
+  overflow: clip;
+}
+
+.presentationChapter::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+}
+
+.presentationChapter[data-scene="spark"] {
+  background:
+    radial-gradient(circle at top left, rgba(142, 165, 255, 0.18), transparent 38%),
+    var(--color-surface-soft);
+  border-color: rgba(142, 165, 255, 0.22);
+}
+
+.presentationChapter[data-scene="spark"]::before {
+  background: radial-gradient(circle at 88% 14%, rgba(122, 229, 160, 0.12), transparent 20%);
+}
+
+.presentationChapter[data-scene="deconstruction"] {
+  background:
+    linear-gradient(135deg, rgba(122, 229, 160, 0.08), transparent 36%),
+    var(--color-surface-soft);
+  border-color: rgba(122, 229, 160, 0.24);
+}
+
+.presentationChapter[data-scene="deconstruction"]::before {
+  background:
+    linear-gradient(rgba(122, 229, 160, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(122, 229, 160, 0.06) 1px, transparent 1px);
+  background-size: 1.25rem 1.25rem;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 70%);
+}
+
+.presentationChapter[data-scene="digital-eye"] {
+  background:
+    radial-gradient(circle at top right, rgba(125, 144, 255, 0.22), transparent 30%),
+    var(--color-surface-soft);
+  border-color: rgba(125, 144, 255, 0.32);
+}
+
+.presentationChapter[data-scene="digital-eye"]::before {
+  border: 1px solid rgba(125, 144, 255, 0.14);
+  border-radius: inherit;
+  inset: 0.65rem;
+}
+
+.presentationChapter[data-scene="execution-loop"] {
+  background:
+    linear-gradient(180deg, rgba(4, 7, 18, 0.96), rgba(5, 9, 18, 0.72)),
+    var(--color-surface-soft);
+  border-color: rgba(122, 229, 160, 0.2);
+}
+
+.presentationChapter[data-scene="execution-loop"]::before {
+  background: linear-gradient(90deg, rgba(122, 229, 160, 0.05), transparent 35%, rgba(142, 165, 255, 0.07));
+}
+
+.presentationChapter[data-scene="execution-loop"] .presentationChapterIndex,
+.presentationChapter[data-scene="execution-loop"] .presentationChapterHeading,
+.presentationChapter[data-scene="execution-loop"] .presentationChapterBody {
+  font-family: var(--font-mono);
+}
+
+.presentationChapter[data-scene="outcome"] {
+  background:
+    linear-gradient(135deg, rgba(122, 229, 160, 0.08), rgba(142, 165, 255, 0.08)),
+    var(--color-background-elevated);
+  border-color: rgba(122, 229, 160, 0.34);
+}
+
+.presentationChapter[data-scene="outcome"]::before {
+  background: radial-gradient(circle at 50% 0%, rgba(122, 229, 160, 0.12), transparent 24%);
+}
+
 .presentationChapter[data-active="true"] {
   border-color: rgba(122, 229, 160, 0.46);
   box-shadow: 0 0 0 1px rgba(122, 229, 160, 0.12), 0 18px 40px rgba(0, 0, 0, 0.24);
@@ -260,6 +371,31 @@ a {
   .presentationOutline {
     position: sticky;
     top: 1.5rem;
+  }
+
+  .presentationChapter {
+    padding: calc(var(--space-4) + 0.15rem) calc(var(--space-4) + 0.3rem);
+  }
+}
+
+@media (max-width: 40rem) {
+  .pageShell {
+    padding: var(--space-4) var(--space-3);
+  }
+
+  .panel {
+    padding: var(--space-4);
+  }
+
+  .presentationFlow {
+    gap: var(--space-4);
+  }
+
+  .presentationOutline,
+  .presentationPrelude,
+  .presentationChapter,
+  .visualizationFrame {
+    border-radius: 0.9rem;
   }
 }
 
@@ -302,6 +438,10 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .skipLink {
+    transition: none;
   }
 
   .presentationFlow {

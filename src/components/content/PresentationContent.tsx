@@ -8,8 +8,16 @@ import { PresentationMotionTracker } from "../motion";
 type PresentationNarrativeChapter = {
   id: string;
   title: string;
+  sceneKey: PresentationSceneKey;
   blocks: MarkdownBlockNode[];
 };
+
+type PresentationSceneKey =
+  | "spark"
+  | "deconstruction"
+  | "digital-eye"
+  | "execution-loop"
+  | "outcome";
 
 type PresentationNarrativeModel = {
   introBlocks: MarkdownBlockNode[];
@@ -21,6 +29,7 @@ type PresentationContentProps = {
 };
 
 const PRESENTATION_MOTION_CONTAINER_ID = "presentation-story";
+const PRESENTATION_SCENE_KEYS: PresentationSceneKey[] = ["spark", "deconstruction", "digital-eye", "execution-loop", "outcome"];
 
 function flattenInlineText(nodes: MarkdownInlineNode[]): string {
   return nodes
@@ -61,6 +70,7 @@ export function buildPresentationNarrative(blocks: MarkdownBlockNode[]): Present
       const chapter: PresentationNarrativeChapter = {
         id: createChapterId(chapters.length, flattenInlineText(block.inlines)),
         title: flattenInlineText(block.inlines),
+        sceneKey: PRESENTATION_SCENE_KEYS[chapters.length] ?? "outcome",
         blocks: [],
       };
 
@@ -100,7 +110,13 @@ export function PresentationContent({ blocks }: PresentationContentProps): React
         ) : null}
 
         {narrative.chapters.map((chapter, index) => (
-          <section key={chapter.id} className="presentationChapter" id={chapter.id} aria-labelledby={`${chapter.id}-heading`}>
+          <section
+            key={chapter.id}
+            className="presentationChapter"
+            data-scene={chapter.sceneKey}
+            id={chapter.id}
+            aria-labelledby={`${chapter.id}-heading`}
+          >
             <p className="presentationChapterIndex">Chapter {index + 1}</p>
             <h2 className="presentationChapterHeading" id={`${chapter.id}-heading`}>
               {chapter.title}

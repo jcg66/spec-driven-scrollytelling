@@ -6,8 +6,13 @@ type AppShellProps = {
 
 export function AppShell({ children }: AppShellProps) {
   return (
-    <main className="pageShell">
-      <div className="shellFrame">{children}</div>
-    </main>
+    <>
+      <a className="skipLink" href="#main-content">
+        Skip to main content
+      </a>
+      <main className="pageShell" id="main-content" tabIndex={-1}>
+        <div className="shellFrame">{children}</div>
+      </main>
+    </>
   );
 }

@@ -180,3 +180,48 @@ test("homepage typography uses explicit system tokens", async ({ page, baseURL }
   expect(titleFontSize).toBeGreaterThan(bodyFontSize);
   expect(chapterHeadingFontSize).toBeGreaterThan(bodyFontSize);
 });
+
+test("homepage exposes a working skip link and main landmark", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  const skipLink = page.locator(".skipLink");
+  const mainLandmark = page.getByRole("main");
+
+  await expect(mainLandmark).toBeVisible();
+
+  await page.keyboard.press("Tab");
+  await expect(skipLink).toBeFocused();
+  await expect(skipLink).toBeVisible();
+
+  await page.keyboard.press("Enter");
+  await expect(mainLandmark).toBeFocused();
+  await expect(page.locator("#main-content")).toBeFocused();
+});
+
+test("homepage scene treatments remain visually distinct across the five chapters", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  const sparkChapter = page.locator('[data-scene="spark"]');
+  const deconstructionChapter = page.locator('[data-scene="deconstruction"]');
+  const executionChapter = page.locator('[data-scene="execution-loop"]');
+  const outcomeChapter = page.locator('[data-scene="outcome"]');
+
+  await expect(sparkChapter).toHaveCount(1);
+  await expect(deconstructionChapter).toHaveCount(1);
+  await expect(executionChapter).toHaveCount(1);
+  await expect(outcomeChapter).toHaveCount(1);
+
+  const sparkBackground = await sparkChapter.evaluate((element) => getComputedStyle(element).backgroundImage);
+  const executionFontFamily = await executionChapter.evaluate((element) => getComputedStyle(element).fontFamily);
+  const outcomeBorderColor = await outcomeChapter.evaluate((element) => getComputedStyle(element).borderColor);
+
+  expect(sparkBackground).toContain("radial-gradient");
+  expect(executionFontFamily).toContain("Cascadia Mono");
+  expect(outcomeBorderColor).toContain("rgba");
+});
