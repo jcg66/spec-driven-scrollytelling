@@ -41,3 +41,7 @@ Support embedded explanatory visuals inside Markdown so the project can combine 
 - Parser tests cover recognition of supported embedded component syntax, identifier validation, and malformed-payload failure behavior.
 - Component tests verify core render contracts for each supported visualization type.
 - Browser tests confirm at least one embedded visualization renders correctly within a real narrative page.
+
+## Sprint Plan
+
+Sprint planning for this spec lives in [docs/project_management/sprints/06-visualization-components.md](../sprints/06-visualization-components.md).

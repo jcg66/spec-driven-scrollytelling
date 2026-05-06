@@ -7,8 +7,8 @@ This file is the lightweight checkpoint for the current implementation state. Up
 | Field | Value |
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete |
-| Current spec | Spec 05: Design and Accessibility complete |
-| Current sprint | Sprint 05D complete |
+| Current spec | Spec 06: Visualization Components ready to start |
+| Current sprint | Sprint 06A ready to start |
 | Next recommended spec | Spec 06: Visualization Components |
 | Last completed work | Implemented and verified Sprint 05D: Release-Review Design and Accessibility QA |
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Spec 06: Visualization Components`.
+- Start `Sprint 06A: Markdown Visualization Contract and Parser Support`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -81,4 +81,5 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 05C verification passed with `npm run build && npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 - Sprint 05D added release-review browser coverage for focus, contrast, landmarks, and support-page readability in the exported artifact.
 - Sprint 05D verification passed with `npm run build && npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
+- Spec 06 sprint planning now defines a Markdown visualization embedding contract, reusable component library work, narrative integration, and release-review QA as separate implementation phases.
 
