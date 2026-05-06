@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import type { MarkdownBlockNode, MarkdownInlineNode } from "@/lib/content";
 
 import { MarkdownContent } from "./MarkdownContent";
+import { PresentationMotionTracker } from "../motion";
 
 type PresentationNarrativeChapter = {
   id: string;
@@ -18,6 +19,8 @@ type PresentationNarrativeModel = {
 type PresentationContentProps = {
   blocks: MarkdownBlockNode[];
 };
+
+const PRESENTATION_MOTION_CONTAINER_ID = "presentation-story";
 
 function flattenInlineText(nodes: MarkdownInlineNode[]): string {
   return nodes
@@ -84,16 +87,9 @@ export function PresentationContent({ blocks }: PresentationContentProps): React
   const narrative = buildPresentationNarrative(blocks);
 
   return (
-    <div className="presentationFlow">
+    <div className="presentationFlow" id={PRESENTATION_MOTION_CONTAINER_ID}>
       <nav className="presentationOutline" aria-label="Chapter outline">
-        <p className="presentationOutlineLabel">Chapters</p>
-        <ol className="presentationOutlineList">
-          {narrative.chapters.map((chapter) => (
-            <li key={chapter.id}>
-              <a href={`#${chapter.id}`}>{chapter.title}</a>
-            </li>
-          ))}
-        </ol>
+        <PresentationMotionTracker chapters={narrative.chapters} containerId={PRESENTATION_MOTION_CONTAINER_ID} />
       </nav>
 
       <div className="presentationStage">

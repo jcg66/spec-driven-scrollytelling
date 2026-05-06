@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 in progress |
 | Current spec | Spec 04: Motion and Interaction ready to start |
-| Current sprint | Sprint 04A ready to start |
+| Current sprint | Sprint 04B ready to start |
 | Next recommended spec | Spec 04: Motion and Interaction |
-| Last completed work | Implemented and verified Sprint 03D: Single-Page Release-Review QA and Navigation Coverage |
+| Last completed work | Implemented and verified Sprint 04A: Scroll-Linked Motion Foundation |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 04A: Scroll-Linked Motion Foundation`.
+- Start `Sprint 04B: Sticky Progress and Scene Progression`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -64,4 +64,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 03D completed the release-review pass, kept the homepage as the public story surface, and verified homepage/support-page navigation plus static-miss handling under the exported artifact.
 - Sprint 03D verification passed with `npm run test -- tests/unit/content-pages.test.ts tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run verify:export`.
 - Spec 04 sprint planning now defines scroll-linked motion, sticky progression, reduced-motion fallbacks, and release-review QA as separate implementation phases.
+- Sprint 04A added a shared presentation motion state helper, a client-side scene progress tracker, and a visible progress indicator on the homepage presentation flow.
+- Sprint 04A verification passed with `npm run test -- tests/unit/presentation-motion.test.ts tests/unit/content-pages.test.ts`.
 
