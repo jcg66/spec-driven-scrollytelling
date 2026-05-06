@@ -1,5 +1,73 @@
 export const PRESENTATION_SLIDE_DELIMITER = "<!-- slide -->";
 
+export const SUPPORTED_VISUALIZATION_COMPONENT_IDS = [
+  "stat-grid",
+  "timeline",
+  "event-log",
+  "capability-list",
+  "decision-flow",
+  "code-sample",
+] as const;
+
+export type VisualizationComponentId = (typeof SUPPORTED_VISUALIZATION_COMPONENT_IDS)[number];
+
+type VisualizationStatGridPayload = {
+  items: Array<{
+    value: string;
+    label: string;
+  }>;
+};
+
+type VisualizationTimelinePayload = {
+  entries: Array<{
+    when: string;
+    label: string;
+    description: string;
+  }>;
+};
+
+type VisualizationEventLogPayload = {
+  entries: Array<{
+    level: "info" | "success" | "warning" | "error";
+    message: string;
+    detail?: string;
+  }>;
+};
+
+type VisualizationCapabilityListPayload = {
+  items: Array<{
+    name: string;
+    description: string;
+  }>;
+};
+
+type VisualizationDecisionFlowPayload = {
+  nodes: Array<{
+    id: string;
+    label: string;
+  }>;
+  edges: Array<{
+    from: string;
+    to: string;
+    label?: string;
+  }>;
+};
+
+type VisualizationCodeSamplePayload = {
+  title?: string;
+  language: string;
+  code: string;
+  caption?: string;
+};
+
+type VisualizationPayload =
+  | VisualizationStatGridPayload
+  | VisualizationTimelinePayload
+  | VisualizationEventLogPayload
+  | VisualizationCapabilityListPayload
+  | VisualizationDecisionFlowPayload
+  | VisualizationCodeSamplePayload;
+
 export type MarkdownInlineNode =
   | {
       type: "text";
@@ -32,6 +100,12 @@ export type MarkdownBlockNode =
   | {
       type: "code";
       language: string | null;
+      value: string;
+    }
+  | {
+      type: "visualization";
+      componentId: VisualizationComponentId;
+      payload: VisualizationPayload;
       value: string;
     };
 
@@ -69,6 +143,225 @@ function isListItemLine(line: string): boolean {
 
 function isCodeFenceLine(line: string): boolean {
   return /^```/.test(line.trim());
+}
+
+function parseCodeFenceLanguage(line: string): string {
+  return line.trim().slice(3).trim();
+}
+
+function isVisualizationFenceLanguage(language: string): boolean {
+  return /^viz:[a-z0-9-]+$/.test(language);
+}
+
+function isSupportedVisualizationComponentId(componentId: string): componentId is VisualizationComponentId {
+  return (SUPPORTED_VISUALIZATION_COMPONENT_IDS as readonly string[]).includes(componentId);
+}
+
+function createVisualizationError(componentId: string, message: string): Error {
+  return createMarkdownError(`Visualization component "${componentId}": ${message}`);
+}
+
+function assertVisualizationRecord(value: unknown, componentId: string): Record<string, unknown> {
+  if (typeof value !== "object" || value === null || Array.isArray(value)) {
+    throw createVisualizationError(componentId, "payload must be a JSON object.");
+  }
+
+  return value as Record<string, unknown>;
+}
+
+function requireVisualizationStringField(
+  record: Record<string, unknown>,
+  fieldName: string,
+  componentId: string,
+): string {
+  const value = record[fieldName];
+
+  if (typeof value !== "string" || !value.trim()) {
+    throw createVisualizationError(componentId, `field "${fieldName}" must be a non-empty string.`);
+  }
+
+  return value.trim();
+}
+
+function assertAllowedVisualizationKeys(
+  record: Record<string, unknown>,
+  allowedKeys: readonly string[],
+  componentId: string,
+) {
+  for (const key of Object.keys(record)) {
+    if (!allowedKeys.includes(key)) {
+      throw createVisualizationError(componentId, `unexpected field "${key}".`);
+    }
+  }
+}
+
+function validateVisualizationPayload(componentId: VisualizationComponentId, sourceText: string): VisualizationPayload {
+  let parsedValue: unknown;
+
+  try {
+    parsedValue = JSON.parse(sourceText);
+  } catch {
+    throw createVisualizationError(componentId, "payload must be valid JSON.");
+  }
+
+  const record = assertVisualizationRecord(parsedValue, componentId);
+
+  switch (componentId) {
+    case "stat-grid": {
+      assertAllowedVisualizationKeys(record, ["items"], componentId);
+      const items = record.items;
+
+      if (!Array.isArray(items) || items.length === 0) {
+        throw createVisualizationError(componentId, 'field "items" must be a non-empty array.');
+      }
+
+      return {
+        items: items.map((item) => {
+          const itemRecord = assertVisualizationRecord(item, componentId);
+          assertAllowedVisualizationKeys(itemRecord, ["value", "label"], componentId);
+
+          return {
+            value: requireVisualizationStringField(itemRecord, "value", componentId),
+            label: requireVisualizationStringField(itemRecord, "label", componentId),
+          };
+        }),
+      };
+    }
+    case "timeline": {
+      assertAllowedVisualizationKeys(record, ["entries"], componentId);
+      const entries = record.entries;
+
+      if (!Array.isArray(entries) || entries.length === 0) {
+        throw createVisualizationError(componentId, 'field "entries" must be a non-empty array.');
+      }
+
+      return {
+        entries: entries.map((entry) => {
+          const entryRecord = assertVisualizationRecord(entry, componentId);
+          assertAllowedVisualizationKeys(entryRecord, ["when", "label", "description"], componentId);
+
+          return {
+            when: requireVisualizationStringField(entryRecord, "when", componentId),
+            label: requireVisualizationStringField(entryRecord, "label", componentId),
+            description: requireVisualizationStringField(entryRecord, "description", componentId),
+          };
+        }),
+      };
+    }
+    case "event-log": {
+      assertAllowedVisualizationKeys(record, ["entries"], componentId);
+      const entries = record.entries;
+
+      if (!Array.isArray(entries) || entries.length === 0) {
+        throw createVisualizationError(componentId, 'field "entries" must be a non-empty array.');
+      }
+
+      return {
+        entries: entries.map((entry) => {
+          const entryRecord = assertVisualizationRecord(entry, componentId);
+          assertAllowedVisualizationKeys(entryRecord, ["level", "message", "detail"], componentId);
+
+          const level = requireVisualizationStringField(entryRecord, "level", componentId);
+
+          if (!(["info", "success", "warning", "error"] as const).includes(level as VisualizationEventLogPayload["entries"][number]["level"])) {
+            throw createVisualizationError(componentId, 'field "level" must be one of: info, success, warning, error.');
+          }
+
+          const entryPayload: VisualizationEventLogPayload["entries"][number] = {
+            level: level as VisualizationEventLogPayload["entries"][number]["level"],
+            message: requireVisualizationStringField(entryRecord, "message", componentId),
+          };
+
+          if (entryRecord.detail !== undefined) {
+            entryPayload.detail = requireVisualizationStringField(entryRecord, "detail", componentId);
+          }
+
+          return entryPayload;
+        }),
+      };
+    }
+    case "capability-list": {
+      assertAllowedVisualizationKeys(record, ["items"], componentId);
+      const items = record.items;
+
+      if (!Array.isArray(items) || items.length === 0) {
+        throw createVisualizationError(componentId, 'field "items" must be a non-empty array.');
+      }
+
+      return {
+        items: items.map((item) => {
+          const itemRecord = assertVisualizationRecord(item, componentId);
+          assertAllowedVisualizationKeys(itemRecord, ["name", "description"], componentId);
+
+          return {
+            name: requireVisualizationStringField(itemRecord, "name", componentId),
+            description: requireVisualizationStringField(itemRecord, "description", componentId),
+          };
+        }),
+      };
+    }
+    case "decision-flow": {
+      assertAllowedVisualizationKeys(record, ["nodes", "edges"], componentId);
+      const nodes = record.nodes;
+      const edges = record.edges;
+
+      if (!Array.isArray(nodes) || nodes.length === 0) {
+        throw createVisualizationError(componentId, 'field "nodes" must be a non-empty array.');
+      }
+
+      if (!Array.isArray(edges) || edges.length === 0) {
+        throw createVisualizationError(componentId, 'field "edges" must be a non-empty array.');
+      }
+
+      const parsedNodes = nodes.map((node) => {
+        const nodeRecord = assertVisualizationRecord(node, componentId);
+        assertAllowedVisualizationKeys(nodeRecord, ["id", "label"], componentId);
+
+        return {
+          id: requireVisualizationStringField(nodeRecord, "id", componentId),
+          label: requireVisualizationStringField(nodeRecord, "label", componentId),
+        };
+      });
+
+      const knownNodeIds = new Set(parsedNodes.map((node) => node.id));
+
+      return {
+        nodes: parsedNodes,
+        edges: edges.map((edge) => {
+          const edgeRecord = assertVisualizationRecord(edge, componentId);
+          assertAllowedVisualizationKeys(edgeRecord, ["from", "to", "label"], componentId);
+
+          const from = requireVisualizationStringField(edgeRecord, "from", componentId);
+          const to = requireVisualizationStringField(edgeRecord, "to", componentId);
+
+          if (!knownNodeIds.has(from) || !knownNodeIds.has(to)) {
+            throw createVisualizationError(componentId, 'field "edges" must reference known node ids.');
+          }
+
+          const edgePayload: VisualizationDecisionFlowPayload["edges"][number] = {
+            from,
+            to,
+          };
+
+          if (edgeRecord.label !== undefined) {
+            edgePayload.label = requireVisualizationStringField(edgeRecord, "label", componentId);
+          }
+
+          return edgePayload;
+        }),
+      };
+    }
+    case "code-sample": {
+      assertAllowedVisualizationKeys(record, ["title", "language", "code", "caption"], componentId);
+
+      return {
+        title: record.title === undefined ? undefined : requireVisualizationStringField(record, "title", componentId),
+        language: requireVisualizationStringField(record, "language", componentId),
+        code: requireVisualizationStringField(record, "code", componentId),
+        caption: record.caption === undefined ? undefined : requireVisualizationStringField(record, "caption", componentId),
+      };
+    }
+  }
 }
 
 function isPresentationDelimiterLine(line: string): boolean {
@@ -198,7 +491,7 @@ function parseListItems(lines: string[], startIndex: number): { block: MarkdownB
 
 function parseCodeBlock(lines: string[], startIndex: number): { block: MarkdownBlockNode; nextIndex: number } {
   const openingFenceLine = lines[startIndex].trim();
-  const language = openingFenceLine.slice(3).trim() || null;
+  const language = parseCodeFenceLanguage(openingFenceLine) || null;
   const codeLines: string[] = [];
   let index = startIndex + 1;
 
@@ -221,6 +514,44 @@ function parseCodeBlock(lines: string[], startIndex: number): { block: MarkdownB
   };
 }
 
+function parseVisualizationBlock(lines: string[], startIndex: number): { block: MarkdownBlockNode; nextIndex: number } {
+  const openingFenceLine = lines[startIndex].trim();
+  const fenceLanguage = parseCodeFenceLanguage(openingFenceLine);
+  const componentId = fenceLanguage.slice(4);
+
+  if (!isSupportedVisualizationComponentId(componentId)) {
+    throw createMarkdownError(`Unsupported visualization component "${componentId}".`);
+  }
+
+  const sourceLines: string[] = [];
+  let index = startIndex + 1;
+
+  while (index < lines.length && !isCodeFenceLine(lines[index])) {
+    sourceLines.push(lines[index]);
+    index += 1;
+  }
+
+  if (index >= lines.length) {
+    throw createMarkdownError(`Markdown visualization fence for "${componentId}" is not closed.`);
+  }
+
+  const value = sourceLines.join("\n");
+
+  if (!value.trim()) {
+    throw createVisualizationError(componentId, "payload cannot be empty.");
+  }
+
+  return {
+    block: {
+      type: "visualization",
+      componentId,
+      payload: validateVisualizationPayload(componentId, value),
+      value,
+    },
+    nextIndex: index + 1,
+  };
+}
+
 export function parseMarkdownBlocks(sourceText: string): ParsedMarkdownDocument {
   const lines = normalizeSourceText(sourceText).split("\n");
   const blocks: MarkdownBlockNode[] = [];
@@ -235,6 +566,15 @@ export function parseMarkdownBlocks(sourceText: string): ParsedMarkdownDocument 
     }
 
     if (isCodeFenceLine(line)) {
+      const openingFenceLanguage = parseCodeFenceLanguage(line);
+
+      if (isVisualizationFenceLanguage(openingFenceLanguage)) {
+        const { block, nextIndex } = parseVisualizationBlock(lines, index);
+        blocks.push(block);
+        index = nextIndex;
+        continue;
+      }
+
       const { block, nextIndex } = parseCodeBlock(lines, index);
       blocks.push(block);
       index = nextIndex;

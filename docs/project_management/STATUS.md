@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete |
-| Current spec | Spec 06: Visualization Components ready to start |
-| Current sprint | Sprint 06A ready to start |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 in progress |
+| Current spec | Spec 06: Visualization Components in progress |
+| Current sprint | Sprint 06B ready to start |
 | Next recommended spec | Spec 06: Visualization Components |
-| Last completed work | Implemented and verified Sprint 05D: Release-Review Design and Accessibility QA |
+| Last completed work | Implemented and verified Sprint 06A: Markdown Visualization Contract and Parser Support |
 
 ## Current Context
 
@@ -82,4 +82,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 05D added release-review browser coverage for focus, contrast, landmarks, and support-page readability in the exported artifact.
 - Sprint 05D verification passed with `npm run build && npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 - Spec 06 sprint planning now defines a Markdown visualization embedding contract, reusable component library work, narrative integration, and release-review QA as separate implementation phases.
+- Sprint 06A added fenced `viz:<component-id>` parser support with validated JSON payloads for the initial component set and unit coverage for supported, unsupported, and malformed blocks.
+- Sprint 06A verification passed with `npm run test` and `npm run build`.
 

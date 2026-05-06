@@ -88,6 +88,52 @@ const answer = 42;
       },
     ]);
   });
+
+  it("parses supported visualization fences into validated visualization blocks", () => {
+    const document = parseMarkdownBlocks(
+      [
+        "```viz:stat-grid",
+        '{"items":[{"value":"85%","label":"Engagement"},{"value":"3.2s","label":"Avg dwell"}]}',
+        "```",
+      ].join("\n"),
+    );
+
+    expect(document.blocks).toEqual([
+      {
+        type: "visualization",
+        componentId: "stat-grid",
+        value: '{"items":[{"value":"85%","label":"Engagement"},{"value":"3.2s","label":"Avg dwell"}]}',
+        payload: {
+          items: [
+            {
+              value: "85%",
+              label: "Engagement",
+            },
+            {
+              value: "3.2s",
+              label: "Avg dwell",
+            },
+          ],
+        },
+      },
+    ]);
+  });
+
+  it("rejects unsupported visualization components and malformed payloads", () => {
+    expect(() =>
+      parseMarkdownBlocks(
+        ["```viz:unknown", '{"items":[{"value":"1","label":"One"}]}', "```"].join("\n"),
+      ),
+    ).toThrow('Unsupported visualization component "unknown".');
+
+    expect(() =>
+      parseMarkdownBlocks(["```viz:stat-grid", '{"items":[]}', "```"].join("\n")),
+    ).toThrow('Visualization component "stat-grid": field "items" must be a non-empty array.');
+
+    expect(() =>
+      parseMarkdownBlocks(["```viz:code-sample", "not-json", "```"].join("\n")),
+    ).toThrow('Visualization component "code-sample": payload must be valid JSON.');
+  });
 });
 
 describe("parsePresentationMarkdown", () => {

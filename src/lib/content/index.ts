@@ -6,6 +6,7 @@ export type {
   ParsedMarkdownDocument,
   ParsedPresentationDocument,
   ParsedPresentationSlide,
+  VisualizationComponentId,
 } from "./markdown-parser";
 export type { ContentRoutePageModel, NarrativeChapter } from "./content-pages";
 export {
@@ -19,7 +20,12 @@ export {
   createContentRouteMetadata,
   createContentRoutePageModel,
 } from "./content-pages";
-export { parseMarkdownBlocks, parsePresentationMarkdown, PRESENTATION_SLIDE_DELIMITER } from "./markdown-parser";
+export {
+  parseMarkdownBlocks,
+  parsePresentationMarkdown,
+  PRESENTATION_SLIDE_DELIMITER,
+  SUPPORTED_VISUALIZATION_COMPONENT_IDS,
+} from "./markdown-parser";
 export {
   HOME_SOURCE_PATH,
   REFERENCE_CONTENT_DIRECTORY,
