@@ -1,5 +1,47 @@
 import { expect, test } from "@playwright/test";
 
+type CssColor = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+function parseCssColor(value: string): CssColor {
+  const channels = value.match(/\d+(?:\.\d+)?/g);
+
+  if (!channels || channels.length < 3) {
+    throw new Error(`Unable to parse CSS color: ${value}`);
+  }
+
+  return {
+    r: Number(channels[0]),
+    g: Number(channels[1]),
+    b: Number(channels[2]),
+  };
+}
+
+function linearizeChannel(channel: number): number {
+  const normalized = channel / 255;
+
+  if (normalized <= 0.03928) {
+    return normalized / 12.92;
+  }
+
+  return ((normalized + 0.055) / 1.055) ** 2.4;
+}
+
+function getContrastRatio(foreground: CssColor, background: CssColor): number {
+  const foregroundLuminance =
+    0.2126 * linearizeChannel(foreground.r) + 0.7152 * linearizeChannel(foreground.g) + 0.0722 * linearizeChannel(foreground.b);
+  const backgroundLuminance =
+    0.2126 * linearizeChannel(background.r) + 0.7152 * linearizeChannel(background.g) + 0.0722 * linearizeChannel(background.b);
+
+  const lighter = Math.max(foregroundLuminance, backgroundLuminance);
+  const darker = Math.min(foregroundLuminance, backgroundLuminance);
+
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
 test("exported site loads under the repository base path and survives a static miss", async ({ page, baseURL }) => {
   const sameOriginPrefix = baseURL || "";
   const basePath = new URL(sameOriginPrefix).pathname.replace(/\/$/, "");
@@ -224,4 +266,39 @@ test("homepage scene treatments remain visually distinct across the five chapter
   expect(sparkBackground).toContain("radial-gradient");
   expect(executionFontFamily).toContain("Cascadia Mono");
   expect(outcomeBorderColor).toContain("rgba");
+});
+
+test("release-review design and accessibility checks stay readable in the exported artifact", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+  const supportUrl = `${sameOriginPrefix}/agentic-ai-context/`;
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  const skipLink = page.locator(".skipLink");
+  const mainLandmark = page.getByRole("main");
+  const bodyBackground = await page.locator("body").evaluate((element) => getComputedStyle(element).backgroundColor);
+  const titleColor = await page.locator(".title").first().evaluate((element) => getComputedStyle(element).color);
+  const ledeColor = await page.locator(".lede").first().evaluate((element) => getComputedStyle(element).color);
+
+  await expect(mainLandmark).toBeVisible();
+  await page.keyboard.press("Tab");
+  await expect(skipLink).toBeFocused();
+  await page.keyboard.press("Enter");
+  await expect(mainLandmark).toBeFocused();
+
+  expect(getContrastRatio(parseCssColor(titleColor), parseCssColor(bodyBackground))).toBeGreaterThanOrEqual(7);
+  expect(getContrastRatio(parseCssColor(ledeColor), parseCssColor(bodyBackground))).toBeGreaterThanOrEqual(4.5);
+
+  await page.goto(supportUrl, { waitUntil: "networkidle" });
+
+  await expect(page.getByRole("main")).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Agentic AI Context" })).toBeVisible();
+
+  const supportTitleColor = await page.locator(".title").first().evaluate((element) => getComputedStyle(element).color);
+  const supportLedeColor = await page.locator(".lede").first().evaluate((element) => getComputedStyle(element).color);
+  const supportBackground = await page.locator("body").evaluate((element) => getComputedStyle(element).backgroundColor);
+
+  expect(getContrastRatio(parseCssColor(supportTitleColor), parseCssColor(supportBackground))).toBeGreaterThanOrEqual(7);
+  expect(getContrastRatio(parseCssColor(supportLedeColor), parseCssColor(supportBackground))).toBeGreaterThanOrEqual(4.5);
 });
