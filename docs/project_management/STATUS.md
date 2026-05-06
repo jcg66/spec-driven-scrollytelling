@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 in progress |
 | Current spec | Spec 06: Visualization Components in progress |
-| Current sprint | Sprint 06B ready to start |
+| Current sprint | Sprint 06C ready to start |
 | Next recommended spec | Spec 06: Visualization Components |
-| Last completed work | Implemented and verified Sprint 06A: Markdown Visualization Contract and Parser Support |
+| Last completed work | Implemented and verified Sprint 06B: Core Visualization Component Library |
 
 ## Current Context
 
@@ -84,4 +84,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Spec 06 sprint planning now defines a Markdown visualization embedding contract, reusable component library work, narrative integration, and release-review QA as separate implementation phases.
 - Sprint 06A added fenced `viz:<component-id>` parser support with validated JSON payloads for the initial component set and unit coverage for supported, unsupported, and malformed blocks.
 - Sprint 06A verification passed with `npm run test` and `npm run build`.
+- Sprint 06B added reusable React visualization components for stat grids, timelines, event logs, capability lists, decision flows, and code samples, plus reduced-motion fallback coverage.
+- Sprint 06B verification passed with `npm run test` and `npm run build`.
 

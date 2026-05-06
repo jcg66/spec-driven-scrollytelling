@@ -425,6 +425,230 @@ button:focus-visible,
   line-height: 1.6;
 }
 
+.visualizationWidget {
+  border: 1px solid rgba(125, 144, 255, 0.22);
+  border-radius: var(--radius-2);
+  padding: var(--space-4);
+  background: linear-gradient(180deg, rgba(9, 16, 29, 0.92), rgba(5, 9, 18, 0.78));
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.visualizationWidgetHeader {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.visualizationWidgetTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+.visualizationWidgetDescription {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.visualizationStatGridList,
+.visualizationCapabilityListGrid,
+.visualizationEventLogList,
+.visualizationTimelineList,
+.visualizationDecisionFlowEdges {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visualizationStatGridList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-3);
+}
+
+.visualizationStatGridItem {
+  padding: var(--space-3);
+  border-radius: var(--radius-1);
+  border: 1px solid rgba(122, 229, 160, 0.18);
+  background: rgba(5, 9, 18, 0.64);
+  display: grid;
+  gap: 0.3rem;
+}
+
+.visualizationStatGridValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.visualizationStatGridLabel {
+  color: var(--color-text-muted);
+  line-height: 1.4;
+}
+
+.visualizationTimelineList {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.visualizationTimelineItem {
+  padding: var(--space-3);
+  border-radius: var(--radius-1);
+  border: 1px solid rgba(142, 165, 255, 0.18);
+  background: rgba(5, 9, 18, 0.58);
+}
+
+.visualizationTimelineWhen,
+.visualizationEventLogLevel,
+.visualizationCapabilityListName,
+.visualizationDecisionFlowNodeIndex,
+.visualizationCodeSampleLanguage {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-soft);
+}
+
+.visualizationTimelineLabel,
+.visualizationCapabilityListDescription,
+.visualizationEventLogMessage,
+.visualizationEventLogDetail,
+.visualizationTimelineDescription,
+.visualizationDecisionFlowNodeLabel,
+.visualizationDecisionFlowNodeId,
+.visualizationCodeSampleCaption {
+  margin: 0;
+}
+
+.visualizationTimelineLabel,
+.visualizationDecisionFlowNodeLabel {
+  margin-top: 0.35rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.visualizationTimelineDescription,
+.visualizationCapabilityListDescription,
+.visualizationEventLogMessage,
+.visualizationEventLogDetail,
+.visualizationDecisionFlowNodeId,
+.visualizationCodeSampleCaption {
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.visualizationEventLogList,
+.visualizationCapabilityListGrid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.visualizationEventLogItem,
+.visualizationCapabilityListItem,
+.visualizationDecisionFlowNode {
+  padding: var(--space-3);
+  border-radius: var(--radius-1);
+  border: 1px solid rgba(125, 144, 255, 0.18);
+  background: rgba(5, 9, 18, 0.62);
+}
+
+.visualizationEventLogItem[data-level="success"] {
+  border-color: rgba(122, 229, 160, 0.28);
+}
+
+.visualizationEventLogItem[data-level="warning"] {
+  border-color: rgba(255, 197, 87, 0.28);
+}
+
+.visualizationEventLogItem[data-level="error"] {
+  border-color: rgba(255, 120, 120, 0.28);
+}
+
+.visualizationDecisionFlowNodes {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.visualizationDecisionFlowEdges {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.visualizationDecisionFlowEdge {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(142, 165, 255, 0.18);
+  background: rgba(5, 9, 18, 0.56);
+}
+
+.visualizationDecisionFlowArrow {
+  color: var(--color-accent);
+}
+
+.visualizationDecisionFlowEdgeNote {
+  margin-left: auto;
+  color: var(--color-text-muted);
+}
+
+.visualizationCodeSampleMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.visualizationCodeSampleBlock {
+  margin: 0;
+  padding: var(--space-3);
+  border-radius: var(--radius-1);
+  background: rgba(3, 5, 11, 0.92);
+  border: 1px solid rgba(122, 229, 160, 0.12);
+  overflow-x: auto;
+}
+
+.visualizationCodeSampleBlock code {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--color-text-strong);
+  line-height: 1.6;
+}
+
+.visualizationWidget--reduced {
+  box-shadow: none;
+}
+
+.visualizationWidget--reduced .visualizationStatGridList,
+.visualizationWidget--reduced .visualizationCapabilityListGrid,
+.visualizationWidget--reduced .visualizationEventLogList,
+.visualizationWidget--reduced .visualizationTimelineList,
+.visualizationWidget--reduced .visualizationDecisionFlowNodes,
+.visualizationWidget--reduced .visualizationDecisionFlowEdges {
+  gap: var(--space-2);
+}
+
+.visualizationWidget--reduced .visualizationDecisionFlowEdge {
+  border-style: dashed;
+}
+
+.visualizationWidget--reduced .visualizationStatGridItem,
+.visualizationWidget--reduced .visualizationTimelineItem,
+.visualizationWidget--reduced .visualizationEventLogItem,
+.visualizationWidget--reduced .visualizationCapabilityListItem,
+.visualizationWidget--reduced .visualizationDecisionFlowNode,
+.visualizationWidget--reduced .visualizationCodeSampleBlock {
+  background: rgba(5, 9, 18, 0.7);
+}
+
 .codeLine {
   margin: var(--space-5) 0 0;
   padding: 0.9rem 1rem;
