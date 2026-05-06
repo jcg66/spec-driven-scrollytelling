@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 in progress |
 | Current spec | Spec 03: Narrative and Layouts in progress |
-| Current sprint | Sprint 03C ready to start |
+| Current sprint | Sprint 03D ready to start |
 | Next recommended spec | Spec 03: Narrative and Layouts |
-| Last completed work | Implemented and verified Sprint 03B: Presentation Layout Orchestration |
+| Last completed work | Implemented and verified Sprint 03C: Motion-Independent Presentation Clarity |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 03C: Motion-Independent Presentation Clarity`.
+- Start `Sprint 03D: Single-Page Release-Review QA and Navigation Coverage`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -57,4 +57,8 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 03A verification passed with `npm run test` and `npm run verify:export`.
 - Sprint 03B added a chapter-aware presentation renderer with outline and section landmarks, preserved standard-page rendering, and extended browser coverage to the supporting standard page.
 - Sprint 03B verification passed with `npm run test` and `npm run verify:export`.
+- Sprint 03-Refactor moved the canonical story surface onto the homepage, demoted the old narrative route to support content, and updated unit and browser coverage to the new public-story contract.
+- Sprint 03-Refactor verification passed with `npm run test -- tests/unit/content-pages.test.ts tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run verify:export`.
+- Sprint 03C added reduced-motion fallback behavior that collapses the homepage presentation into a static reading stack and verified the fallback with browser coverage.
+- Sprint 03C verification passed with `npm run test -- tests/unit/content-pages.test.ts tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run verify:export`.
 

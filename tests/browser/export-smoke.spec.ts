@@ -73,3 +73,17 @@ test("exported site loads under the repository base path and survives a static m
   expect(failedRequests).toEqual([]);
   expect(errorResponses).toEqual([`404 ${basePath}/missing/route/`]);
 });
+
+test("homepage story remains readable with reduced motion", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+  await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Spark" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Outcome" })).toBeVisible();
+  await expect(page.locator(".presentationFlow")).toHaveCSS("display", "block");
+  await expect(page.locator(".presentationOutline")).toHaveCSS("position", "static");
+});

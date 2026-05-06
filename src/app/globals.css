@@ -196,3 +196,23 @@ a {
   font-family: "Courier New", Courier, monospace;
   overflow-x: auto;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .presentationFlow {
+    display: block;
+  }
+
+  .presentationOutline {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .presentationStage {
+    display: grid;
+    gap: 1rem;
+  }
+}
