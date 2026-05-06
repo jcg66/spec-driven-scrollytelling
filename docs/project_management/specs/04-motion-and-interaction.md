@@ -44,3 +44,7 @@ Use motion as explanatory infrastructure for the single-page scrollytelling expe
 - Unit or component tests cover motion mode selection and reduced-motion fallbacks where logic is observable.
 - Browser tests verify slide progression, major section visibility, and progress indicator state changes.
 - Regression checks should include viewport coverage for mobile and desktop breakpoints.
+
+## Sprint Plan
+
+Sprint planning for this spec lives in [docs/project_management/sprints/04-motion-and-interaction.md](../sprints/04-motion-and-interaction.md).

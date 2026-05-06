@@ -63,4 +63,5 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 03C verification passed with `npm run test -- tests/unit/content-pages.test.ts tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run verify:export`.
 - Sprint 03D completed the release-review pass, kept the homepage as the public story surface, and verified homepage/support-page navigation plus static-miss handling under the exported artifact.
 - Sprint 03D verification passed with `npm run test -- tests/unit/content-pages.test.ts tests/unit/content-repository.test.ts tests/unit/route-params.test.ts` and `npm run verify:export`.
+- Spec 04 sprint planning now defines scroll-linked motion, sticky progression, reduced-motion fallbacks, and release-review QA as separate implementation phases.
 
