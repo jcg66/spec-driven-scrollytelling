@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 in progress |
 | Current spec | Spec 04: Motion and Interaction ready to start |
-| Current sprint | Sprint 04C ready to start |
+| Current sprint | Sprint 04D ready to start |
 | Next recommended spec | Spec 04: Motion and Interaction |
-| Last completed work | Implemented and verified Sprint 04B: Sticky Progress and Scene Progression |
+| Last completed work | Implemented and verified Sprint 04C: Reduced-Motion and Interaction Fallbacks |
 
 ## Current Context
 
@@ -68,4 +68,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 04A verification passed with `npm run test -- tests/unit/presentation-motion.test.ts tests/unit/content-pages.test.ts`.
 - Sprint 04B connected scroll position to the five-scene sequence, highlighted the active section and outline entry, and verified the exported artifact across desktop and mobile viewports.
 - Sprint 04B verification passed with `npm run verify:export`.
+- Sprint 04C added an explicit reduced-motion reading mode, kept the presentation readable without motion-linked updates, and verified the fallback with browser coverage.
+- Sprint 04C verification passed with `npm run verify:export`.
 

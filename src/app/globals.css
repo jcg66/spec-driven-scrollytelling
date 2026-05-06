@@ -130,6 +130,10 @@ a {
   gap: 0.45rem;
 }
 
+.presentationMotion[data-motion-mode="reduced"] .presentationMotionLabel {
+  color: #8ea5ff;
+}
+
 .presentationMotionLabel {
   margin: 0;
   color: #7ae5a0;
@@ -278,5 +282,9 @@ a {
 
   .presentationChapter[data-active="true"] {
     box-shadow: none;
+  }
+
+  .presentationMotion[data-motion-mode="reduced"] .presentationMotionLabel {
+    color: #8ea5ff;
   }
 }

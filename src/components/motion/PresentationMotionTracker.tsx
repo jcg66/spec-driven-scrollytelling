@@ -11,11 +11,32 @@ type PresentationMotionTrackerProps = {
 
 export function PresentationMotionTracker({ chapters, containerId }: PresentationMotionTrackerProps) {
   const [activeChapterId, setActiveChapterId] = useState<string | null>(chapters[0]?.id ?? null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const updatePreference = () => {
+      setPrefersReducedMotion(mediaQuery.matches);
+    };
+
+    updatePreference();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", updatePreference);
+
+      return () => mediaQuery.removeEventListener("change", updatePreference);
+    }
+
+    mediaQuery.addListener(updatePreference);
+
+    return () => mediaQuery.removeListener(updatePreference);
+  }, []);
 
   useEffect(() => {
     const container = document.getElementById(containerId);
 
-    if (!container || typeof IntersectionObserver === "undefined") {
+    if (!container) {
       return;
     }
 
@@ -37,9 +58,46 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
       }
     };
 
+    const getChapterIdFromHash = () => {
+      const hash = window.location.hash.replace(/^#/, "");
+
+      if (!hash) {
+        return null;
+      }
+
+      const matchingChapter = chapters.find((chapter) => chapter.id === hash);
+
+      return matchingChapter?.id ?? null;
+    };
+
+    if (prefersReducedMotion) {
+      const updateFromHash = () => {
+        const chapterId = getChapterIdFromHash() ?? chapters[0]?.id ?? null;
+
+        syncActiveSectionState(chapterId);
+        setActiveChapterId((current) => (current === chapterId ? current : chapterId));
+      };
+
+      updateFromHash();
+      window.addEventListener("hashchange", updateFromHash);
+
+      return () => {
+        window.removeEventListener("hashchange", updateFromHash);
+      };
+    }
+
     let frameId: number | null = null;
 
     const updateActiveChapter = () => {
+      const hashChapterId = getChapterIdFromHash();
+
+      if (hashChapterId) {
+        syncActiveSectionState(hashChapterId);
+        setActiveChapterId((current) => (current === hashChapterId ? current : hashChapterId));
+
+        return;
+      }
+
       const viewportCenter = window.innerHeight / 2;
       let bestChapterId: string | null = null;
       let bestDistance = Number.POSITIVE_INFINITY;
@@ -83,6 +141,7 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
 
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
     window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("hashchange", scheduleUpdate);
 
     return () => {
       if (frameId !== null) {
@@ -91,8 +150,9 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
 
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("hashchange", scheduleUpdate);
     };
-  }, [chapters, containerId]);
+  }, [chapters, containerId, prefersReducedMotion]);
 
   const motionState = createPresentationMotionState(chapters, activeChapterId);
 
@@ -104,12 +164,17 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
     "--presentation-progress": `${motionState.progressValue}%`,
   } as CSSProperties;
 
+  const motionModeLabel = prefersReducedMotion ? "Reading mode" : "Scroll-linked motion";
+  const motionModeDescription = prefersReducedMotion
+    ? "Reduced motion is enabled. Use the chapter links to move through the story without motion-linked updates."
+    : motionState.progressDescription;
+
   return (
     <>
-      <section className="presentationMotion" aria-label="Story progress" aria-live="polite">
-        <p className="presentationMotionLabel">Scene progress</p>
+      <section className="presentationMotion" aria-label="Story progress" aria-live="polite" data-motion-mode={prefersReducedMotion ? "reduced" : "scroll"}>
+        <p className="presentationMotionLabel">{motionModeLabel}</p>
         <p className="presentationMotionStatus">{motionState.progressLabel}</p>
-        <p className="presentationMotionDescription">{motionState.progressDescription}</p>
+        <p className="presentationMotionDescription">{motionModeDescription}</p>
         <div
           className="presentationMotionTrack"
           role="progressbar"

@@ -123,6 +123,15 @@ test("homepage story remains readable with reduced motion", async ({ page, baseU
   await expect(page.getByRole("heading", { level: 1, name: "Inside the Agentic Brain" })).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "Spark" })).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "Outcome" })).toBeVisible();
+  await expect(page.getByRole("progressbar", { name: "Story progress" })).toHaveAttribute("aria-valuenow", "1");
+  await expect(page.getByRole("progressbar", { name: "Story progress" })).toHaveAttribute("aria-valuetext", /Scene 1 of 5: Spark/);
+  await expect(page.getByText("Reading mode")).toBeVisible();
   await expect(page.locator(".presentationFlow")).toHaveCSS("display", "block");
   await expect(page.locator(".presentationOutline")).toHaveCSS("position", "static");
+
+  await page.getByRole("link", { name: "3. Digital Eye" }).click();
+
+  await expect(page.getByRole("progressbar", { name: "Story progress" })).toHaveAttribute("aria-valuenow", "3");
+  await expect(page.getByRole("progressbar", { name: "Story progress" })).toHaveAttribute("aria-valuetext", /Scene 3 of 5: Digital Eye/);
+  await expect(page.locator('.presentationChapter[data-active="true"]')).toContainText("Digital Eye");
 });
