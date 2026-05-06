@@ -309,16 +309,16 @@ button:focus-visible,
     linear-gradient(180deg, rgba(4, 7, 18, 0.96), rgba(5, 9, 18, 0.72)),
     var(--color-surface-soft);
   border-color: rgba(122, 229, 160, 0.2);
+  font-family: var(--font-mono);
 }
 
 .presentationChapter[data-scene="execution-loop"]::before {
   background: linear-gradient(90deg, rgba(122, 229, 160, 0.05), transparent 35%, rgba(142, 165, 255, 0.07));
 }
 
-.presentationChapter[data-scene="execution-loop"] .presentationChapterIndex,
 .presentationChapter[data-scene="execution-loop"] .presentationChapterHeading,
 .presentationChapter[data-scene="execution-loop"] .presentationChapterBody {
-  font-family: var(--font-mono);
+  font-family: inherit;
 }
 
 .presentationChapter[data-scene="outcome"] {

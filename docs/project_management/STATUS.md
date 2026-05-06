@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete |
 | Current spec | Spec 05: Design and Accessibility ready to start |
-| Current sprint | Sprint 05B ready to start |
+| Current sprint | Sprint 05D ready to start |
 | Next recommended spec | Spec 05: Design and Accessibility |
-| Last completed work | Implemented and verified Sprint 05A: Visual Tokens and Typography System |
+| Last completed work | Implemented and verified Sprint 05C: Scene Treatments and Responsive Refinements |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 05B: Accessibility Shell and Interaction Foundations`.
+- Start `Sprint 05D: Release-Review Design and Accessibility QA`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -75,4 +75,8 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Spec 05 sprint planning now defines visual tokens, accessibility shell foundations, scene-specific treatments, and release-review QA as separate implementation phases.
 - Sprint 05A added shared design tokens for color, spacing, typography, and surfaces, plus explicit fallback font stacks and a distinct type scale for narrative and technical text.
 - Sprint 05A verification passed with `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
+- Sprint 05B added a working skip link, a focusable main landmark, visible focus treatment, and browser coverage for the shared accessibility shell.
+- Sprint 05B verification passed with `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
+- Sprint 05C added scene-specific visual treatments for the five story chapters plus mobile-responsive shell refinements, and verified the exported artifact across the scene set.
+- Sprint 05C verification passed with `npm run build && npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 
