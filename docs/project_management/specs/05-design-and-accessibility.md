@@ -50,3 +50,7 @@ The design system should also support a custom agentic cursor treatment, but the
 - Linting and static analysis run in CI.
 - Browser tests include keyboard navigation checks for primary flows.
 - Automated accessibility checks should run against core pages for landmark presence, heading order, skip-link presence, and obvious contrast or aria violations.
+
+## Sprint Plan
+
+Sprint planning for this spec lives in [docs/project_management/sprints/05-design-and-accessibility.md](../sprints/05-design-and-accessibility.md).

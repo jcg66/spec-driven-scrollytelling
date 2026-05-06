@@ -7,8 +7,8 @@ This file is the lightweight checkpoint for the current implementation state. Up
 | Field | Value |
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete |
-| Current spec | Spec 04: Motion and Interaction complete |
-| Current sprint | Sprint 04D complete |
+| Current spec | Spec 05: Design and Accessibility ready to start |
+| Current sprint | Sprint 05A ready to start |
 | Next recommended spec | Spec 05: Design and Accessibility |
 | Last completed work | Implemented and verified Sprint 04D: Release-Review Motion QA |
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Spec 05: Design and Accessibility`.
+- Start `Sprint 05A: Visual Tokens and Typography System`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -72,4 +72,5 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 04C verification passed with `npm run verify:export`.
 - Sprint 04D completed the exported-artifact release review, kept the homepage story contract intact, and verified full story progression plus support-page navigation under the Pages-style base path.
 - Sprint 04D verification passed with `npm run verify:export`.
+- Spec 05 sprint planning now defines visual tokens, accessibility shell foundations, scene-specific treatments, and release-review QA as separate implementation phases.
 
