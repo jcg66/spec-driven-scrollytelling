@@ -30,6 +30,10 @@ The narrative shifts to visual grounding. The agent reads the interface, follows
 
 The story moves into action. The agent clicks, checks feedback, and keeps adapting as the environment changes.
 
+```viz:event-log
+{"entries":[{"level":"info","message":"Action: inspect the task board","detail":"The agent looks for deadline conflicts and mismatched dependencies."},{"level":"success","message":"Observation: conflicts detected","detail":"The board and the calendar are no longer aligned."},{"level":"info","message":"Next: sync the final update","detail":"The loop continues until the plan converges."}]}
+```
+
 ## Outcome
 
 The page closes with a completed result and a calm resolution state.

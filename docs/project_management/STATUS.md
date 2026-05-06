@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 in progress |
 | Current spec | Spec 06: Visualization Components in progress |
-| Current sprint | Sprint 06C ready to start |
+| Current sprint | Sprint 06D ready to start |
 | Next recommended spec | Spec 06: Visualization Components |
-| Last completed work | Implemented and verified Sprint 06B: Core Visualization Component Library |
+| Last completed work | Implemented and verified Sprint 06C: Narrative Embedding and Exported Rendering |
 
 ## Current Context
 
@@ -86,4 +86,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 06A verification passed with `npm run test` and `npm run build`.
 - Sprint 06B added reusable React visualization components for stat grids, timelines, event logs, capability lists, decision flows, and code samples, plus reduced-motion fallback coverage.
 - Sprint 06B verification passed with `npm run test` and `npm run build`.
+- Sprint 06C wired embedded visualization blocks into the shared Markdown renderer, added story-page and support-page examples, and verified them in the exported artifact.
+- Sprint 06C verification passed with `npm run build` and `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 

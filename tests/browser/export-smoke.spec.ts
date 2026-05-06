@@ -76,6 +76,9 @@ test("exported site loads under the repository base path and survives a static m
   );
   await expect(page.getByRole("heading", { level: 2, name: "Spark" })).toBeVisible();
   await expect(page.getByRole("heading", { level: 2, name: "Outcome" })).toBeVisible();
+  await page.getByRole("heading", { level: 2, name: "Execution Loop" }).scrollIntoViewIfNeeded();
+  await expect(page.getByRole("region", { name: "Event log" })).toBeVisible();
+  await expect(page.getByText("Action: inspect the task board")).toBeVisible();
   await expect(page.locator('.presentationChapter[data-active="true"]')).toContainText("Spark");
   await expect(page.getByRole("link", { name: "story guide" })).toBeVisible();
   await page.getByRole("link", { name: "story guide" }).click();
@@ -112,6 +115,7 @@ test("exported site loads under the repository base path and survives a static m
   await page.goto(`${sameOriginPrefix}/agentic-ai-context/`, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Agentic AI Context" })).toBeVisible();
   await expect(page.getByRole("heading", { level: 3, name: "Vocabulary" })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Capabilities" })).toContainText("The user's goal or request.");
 
   await page.goto(missingRouteUrl, { waitUntil: "networkidle" });
   await expect(page.getByRole("heading", { level: 1, name: "Page Not Found" })).toBeVisible();
