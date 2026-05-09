@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 in progress |
 | Current spec | Spec 07: Quality Assurance in progress |
-| Current sprint | Sprint 07B ready to start |
+| Current sprint | Sprint 07C ready to start |
 | Next recommended spec | Spec 07: Quality Assurance |
-| Last completed work | Implemented and verified Sprint 07A: Local Verification Workflow and Lint Baseline |
+| Last completed work | Implemented and verified Sprint 07B: CI Workflow and Deployment Gates |
 
 ## Current Context
 
@@ -94,4 +94,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Spec 07 sprint plan lives in `docs/project_management/sprints/07-quality-assurance.md`.
 - Sprint 07A added `lint` and `typecheck` scripts, a flat ESLint baseline, local verification guidance in the README, and a combined export gate that runs type checking, linting, build, and export smoke verification.
 - Sprint 07A verification passed with `npm run typecheck`, `npm run lint`, `npm test`, and `npm run verify:export`.
+- Sprint 07B added a GitHub Actions CI workflow with separate verify, build, and deploy jobs plus Pages artifact publishing.
+- Sprint 07B verification passed with `npm run verify:export` under the GitHub Pages-style environment variables used by CI.
 
