@@ -6,9 +6,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete |
-| Current spec | Spec 06: Visualization Components complete |
-| Current sprint | Sprint 06D complete |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 in progress |
+| Current spec | Spec 07: Quality Assurance in progress |
+| Current sprint | Sprint 07A ready to start |
 | Next recommended spec | Spec 07: Quality Assurance |
 | Last completed work | Implemented and verified Sprint 06D: Release-Review Visualization QA |
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 06A: Markdown Visualization Contract and Parser Support`.
+- Start `Sprint 07A: Local Verification Workflow and Lint Baseline`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -90,4 +90,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 06C verification passed with `npm run build` and `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 - Sprint 06D added release-review browser coverage for embedded visualizations and reduced-motion fallback states, then verified the exported artifact under the Pages-style base path.
 - Sprint 06D verification passed with `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
+- Spec 07 QA against the current codebase found solid unit/browser/export coverage but no lint script, no CI workflow file, no dedicated local preview workflow document, and no definition-of-done template yet.
+- Spec 07 sprint plan lives in `docs/project_management/sprints/07-quality-assurance.md`.
 
