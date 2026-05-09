@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 in progress |
 | Current spec | Spec 07: Quality Assurance in progress |
-| Current sprint | Sprint 07C ready to start |
+| Current sprint | Sprint 07D ready to start |
 | Next recommended spec | Spec 07: Quality Assurance |
-| Last completed work | Implemented and verified Sprint 07B: CI Workflow and Deployment Gates |
+| Last completed work | Implemented and verified Sprint 07C: Browser QA Matrix and Regression Coverage |
 
 ## Current Context
 
@@ -96,4 +96,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 07A verification passed with `npm run typecheck`, `npm run lint`, `npm test`, and `npm run verify:export`.
 - Sprint 07B added a GitHub Actions CI workflow with separate verify, build, and deploy jobs plus Pages artifact publishing.
 - Sprint 07B verification passed with `npm run verify:export` under the GitHub Pages-style environment variables used by CI.
+- Sprint 07C added a dedicated release-review browser suite that organizes routing, motion, and visualization checks by risk area.
+- Sprint 07C verification passed with `npm run test:e2e -- tests/browser/release-review.spec.ts` and `npm run test:e2e`.
 
