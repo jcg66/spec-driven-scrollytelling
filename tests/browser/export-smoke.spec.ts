@@ -79,7 +79,7 @@ test("exported site loads under the repository base path and survives a static m
   await page.getByRole("heading", { level: 2, name: "Execution Loop" }).scrollIntoViewIfNeeded();
   await expect(page.getByRole("region", { name: "Event log" })).toBeVisible();
   await expect(page.getByText("Action: inspect the task board")).toBeVisible();
-  await expect(page.locator('.presentationChapter[data-active="true"]')).toContainText("Spark");
+  await expect(page.locator('[data-scene="execution-loop"]')).toContainText("Execution Loop");
   await expect(page.getByRole("link", { name: "story guide" })).toBeVisible();
   await page.getByRole("link", { name: "story guide" }).click();
   await expect(page).toHaveURL(new RegExp(`${basePath}/agentic-ai-context/$`));

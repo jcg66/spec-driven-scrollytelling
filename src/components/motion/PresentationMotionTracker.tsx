@@ -124,7 +124,7 @@ export function PresentationMotionTracker({ chapters, containerId }: Presentatio
       }
     };
 
-    syncActiveSectionState(activeChapterId);
+    syncActiveSectionState(chapters[0]?.id ?? null);
 
     const scheduleUpdate = () => {
       if (frameId !== null) {

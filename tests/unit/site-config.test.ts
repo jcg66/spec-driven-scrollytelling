@@ -71,18 +71,24 @@ describe("getConfiguredBasePath", () => {
   });
 
   it("prefers NEXT_PUBLIC_BASE_PATH when provided", () => {
+    const env = {
+      NODE_ENV: "test",
+      NEXT_PUBLIC_BASE_PATH: "/custom-path/",
+    };
+
     expect(
-      getConfiguredBasePath({
-        NEXT_PUBLIC_BASE_PATH: "/custom-path/",
-      } as NodeJS.ProcessEnv),
+      getConfiguredBasePath(env as NodeJS.ProcessEnv),
     ).toBe("/custom-path");
   });
 
   it("falls back to BASE_PATH when NEXT_PUBLIC_BASE_PATH is absent", () => {
+    const env = {
+      NODE_ENV: "test",
+      BASE_PATH: "preview-site",
+    };
+
     expect(
-      getConfiguredBasePath({
-        BASE_PATH: "preview-site",
-      } as NodeJS.ProcessEnv),
+      getConfiguredBasePath(env as NodeJS.ProcessEnv),
     ).toBe("/preview-site");
   });
 });
@@ -93,10 +99,13 @@ describe("getConfiguredSiteOrigin", () => {
   });
 
   it("prefers NEXT_PUBLIC_SITE_ORIGIN when provided", () => {
+    const env = {
+      NODE_ENV: "test",
+      NEXT_PUBLIC_SITE_ORIGIN: "https://course-site.github.io",
+    };
+
     expect(
-      getConfiguredSiteOrigin({
-        NEXT_PUBLIC_SITE_ORIGIN: "https://course-site.github.io",
-      } as NodeJS.ProcessEnv),
+      getConfiguredSiteOrigin(env as NodeJS.ProcessEnv),
     ).toBe("https://course-site.github.io");
   });
 });

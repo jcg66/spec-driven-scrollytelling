@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 in progress |
 | Current spec | Spec 07: Quality Assurance in progress |
-| Current sprint | Sprint 07A ready to start |
+| Current sprint | Sprint 07B ready to start |
 | Next recommended spec | Spec 07: Quality Assurance |
-| Last completed work | Implemented and verified Sprint 06D: Release-Review Visualization QA |
+| Last completed work | Implemented and verified Sprint 07A: Local Verification Workflow and Lint Baseline |
 
 ## Current Context
 
@@ -92,4 +92,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 06D verification passed with `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 - Spec 07 QA against the current codebase found solid unit/browser/export coverage but no lint script, no CI workflow file, no dedicated local preview workflow document, and no definition-of-done template yet.
 - Spec 07 sprint plan lives in `docs/project_management/sprints/07-quality-assurance.md`.
+- Sprint 07A added `lint` and `typecheck` scripts, a flat ESLint baseline, local verification guidance in the README, and a combined export gate that runs type checking, linting, build, and export smoke verification.
+- Sprint 07A verification passed with `npm run typecheck`, `npm run lint`, `npm test`, and `npm run verify:export`.
 

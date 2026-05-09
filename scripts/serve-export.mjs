@@ -8,6 +8,7 @@ const workspaceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)),
 const outDir = path.join(workspaceRoot, "out");
 const port = Number(process.env.PORT || 4321);
 const basePath = normalizeBasePath(process.env.BASE_PATH || "/spec-driven-scrollytelling");
+const redirectLocation = basePath ? `${basePath}/` : "/";
 
 function normalizeBasePath(input) {
   if (!input || input === "/") {
@@ -70,7 +71,7 @@ async function handler(req, res) {
   const filePath = toLocalPath(requestUrl.pathname);
 
   if (requestUrl.pathname === "/") {
-    res.writeHead(302, { Location: `${basePath || ""}/` || "/" });
+    res.writeHead(302, { Location: redirectLocation });
     res.end();
     return;
   }
