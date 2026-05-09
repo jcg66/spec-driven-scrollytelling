@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 in progress |
-| Current spec | Spec 07: Quality Assurance in progress |
-| Current sprint | Sprint 07C ready to start |
-| Next recommended spec | Spec 07: Quality Assurance |
-| Last completed work | Implemented and verified Sprint 07B: CI Workflow and Deployment Gates |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete |
+| Current spec | Spec 07: Quality Assurance complete |
+| Current sprint | Sprint 07D complete |
+| Next recommended spec | Spec 08: Deployment and Operations |
+| Last completed work | Implemented and verified Sprint 07D: QA Documentation and Definition of Done |
 
 ## Current Context
 
@@ -23,9 +23,8 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 07A: Local Verification Workflow and Lint Baseline`.
+- Prepare `Spec 08: Deployment and Operations`.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
-- Keep homepage, routeable-page, and reference-source Markdown boundaries explicit as Spec 02 expands.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
 
@@ -97,4 +96,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 07B added a GitHub Actions CI workflow with separate verify, build, and deploy jobs plus Pages artifact publishing.
 - Sprint 07B verification passed with `npm run verify:export` under the GitHub Pages-style environment variables used by CI.
 - Sprint 07B CI install steps were adjusted from `npm ci` to `npm install` after GitHub Actions reported a lockfile sync failure on the optional `@emnapi/*` dependency tree.
+- Sprint 07C added a dedicated release-review browser suite that organizes routing, motion, and visualization checks by risk area.
+- Sprint 07C verification passed with `npm run test:e2e -- tests/browser/release-review.spec.ts` and `npm run test:e2e`.
+- Sprint 07D added a documented local preview workflow, a release-review checklist, and a reusable definition-of-done template for future specs and sprints.
 
