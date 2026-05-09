@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 in progress |
-| Current spec | Spec 06: Visualization Components in progress |
-| Current sprint | Sprint 06D ready to start |
-| Next recommended spec | Spec 06: Visualization Components |
-| Last completed work | Implemented and verified Sprint 06C: Narrative Embedding and Exported Rendering |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete |
+| Current spec | Spec 06: Visualization Components complete |
+| Current sprint | Sprint 06D complete |
+| Next recommended spec | Spec 07: Quality Assurance |
+| Last completed work | Implemented and verified Sprint 06D: Release-Review Visualization QA |
 
 ## Current Context
 
@@ -88,4 +88,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 06B verification passed with `npm run test` and `npm run build`.
 - Sprint 06C wired embedded visualization blocks into the shared Markdown renderer, added story-page and support-page examples, and verified them in the exported artifact.
 - Sprint 06C verification passed with `npm run build` and `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
+- Sprint 06D added release-review browser coverage for embedded visualizations and reduced-motion fallback states, then verified the exported artifact under the Pages-style base path.
+- Sprint 06D verification passed with `npm run test:e2e -- tests/browser/export-smoke.spec.ts`.
 

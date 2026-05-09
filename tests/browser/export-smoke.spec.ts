@@ -306,3 +306,18 @@ test("release-review design and accessibility checks stay readable in the export
   expect(getContrastRatio(parseCssColor(supportTitleColor), parseCssColor(supportBackground))).toBeGreaterThanOrEqual(7);
   expect(getContrastRatio(parseCssColor(supportLedeColor), parseCssColor(supportBackground))).toBeGreaterThanOrEqual(4.5);
 });
+
+test("release-review visualization widgets remain readable with reduced motion", async ({ page, baseURL }) => {
+  const sameOriginPrefix = baseURL || "";
+  const homeUrl = `${sameOriginPrefix}/`;
+  const supportUrl = `${sameOriginPrefix}/agentic-ai-context/`;
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+
+  await page.goto(homeUrl, { waitUntil: "networkidle" });
+  await page.getByRole("heading", { level: 2, name: "Execution Loop" }).scrollIntoViewIfNeeded();
+  await expect(page.getByRole("region", { name: "Event log" })).toContainText("Action: inspect the task board");
+
+  await page.goto(supportUrl, { waitUntil: "networkidle" });
+  await expect(page.getByRole("region", { name: "Capabilities" })).toContainText("The user's goal or request.");
+});
