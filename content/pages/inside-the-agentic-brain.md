@@ -9,6 +9,8 @@ seoDescription: A supporting reading page that explains the scene map and vocabu
 ---
 This supporting page maps the homepage story without replacing it.
 
+It stays secondary to the canonical route and gives readers a faster way to decode the five scenes.
+
 ## Scene map
 
 - Spark: the request arrives and the story opens in isolation.
@@ -24,5 +26,7 @@ This supporting page maps the homepage story without replacing it.
 - Grounding: the information the agent uses to stay aligned with the situation.
 - Execution: the action the agent takes in the environment.
 - Outcome: the result the viewer should understand.
+
+This guide is meant to support the homepage story, not compete with it.
 
 [Return Home](../)

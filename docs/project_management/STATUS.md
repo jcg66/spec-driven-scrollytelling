@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 in progress |
-| Current spec | Spec 09: Story Content Refresh in progress |
-| Current sprint | Sprint 09B ready to start |
-| Next recommended spec | Spec 09: Story Content Refresh |
-| Last completed work | Implemented and verified Sprint 08B: Release Operations Runbook and Health Checks |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 complete |
+| Current spec | Spec 09: Story Content Refresh complete |
+| Current sprint | Sprint 09B complete |
+| Next recommended spec | Spec 10: Design and Layout Integration |
+| Last completed work | Implemented and verified Sprint 09B: Supporting Context and Story QA |
 
 ## Current Context
 
@@ -23,8 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 09B: Supporting Context and Story QA`.
-- Keep the homepage narrative aligned with the refreshed action-layer story.
+- Keep the refreshed story aligned with the advanced design and layout plan.
 - Keep the support pages and story-reference material aligned with the homepage vocabulary.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
@@ -109,4 +108,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Spec 09 QA against the current worktree found that the homepage, support pages, and reference notes still reflect the earlier agentic-brain draft more than the newer action-layer script draft, so the narrative copy needs a dedicated refresh before the story can be considered aligned.
 - Sprint 09A rewrote the homepage story to reflect the refreshed action-layer narrative while preserving the five-scene structure and existing browser anchors.
 - Sprint 09A verification passed with `npm run verify:export`.
+- Sprint 09B aligned the support pages and reference-only story outline with the refreshed homepage vocabulary while preserving the existing routes and browser anchors.
+- Sprint 09B verification passed with `npm run verify:export`.
 - Spec 09 sprint plan lives in `docs/project_management/sprints/09-story-content-refresh.md`.
