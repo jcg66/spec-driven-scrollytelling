@@ -6,10 +6,10 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 in progress; Spec 10 in progress |
-| Current spec | Spec 10: Design and Layout Integration in progress |
-| Current sprint | Sprint 10A ready to start |
-| Next recommended spec | Spec 10: Design and Layout Integration |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 in progress |
+| Current spec | Spec 09: Story Content Refresh in progress |
+| Current sprint | Sprint 09B ready to start |
+| Next recommended spec | Spec 09: Story Content Refresh |
 | Last completed work | Implemented and verified Sprint 08B: Release Operations Runbook and Health Checks |
 
 ## Current Context
@@ -23,8 +23,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 10A: Design Token and Component Translation`.
-- Keep the release-operations runbook aligned with the CI workflow, local preview command, and Pages publish path.
+- Start `Sprint 09B: Supporting Context and Story QA`.
+- Keep the homepage narrative aligned with the refreshed action-layer story.
+- Keep the support pages and story-reference material aligned with the homepage vocabulary.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
@@ -106,6 +107,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 08B verification passed with a doc review against the current workflow and preview command surface.
 - Spec 08 sprint plan lives in `docs/project_management/sprints/08-deployment-and-operations.md`.
 - Spec 09 QA against the current worktree found that the homepage, support pages, and reference notes still reflect the earlier agentic-brain draft more than the newer action-layer script draft, so the narrative copy needs a dedicated refresh before the story can be considered aligned.
+- Sprint 09A rewrote the homepage story to reflect the refreshed action-layer narrative while preserving the five-scene structure and existing browser anchors.
+- Sprint 09A verification passed with `npm run verify:export`.
 - Spec 09 sprint plan lives in `docs/project_management/sprints/09-story-content-refresh.md`.
-- Spec 10 QA against the current worktree found that the advanced design language is already directionally defined in the reference materials and Spec 05, but it still needs a guarded translation into reusable tokens, scene composition, and regression hardening to avoid project drift or layout instability.
-- Spec 10 sprint plan lives in `docs/project_management/sprints/10-design-and-layout-integration.md`.
