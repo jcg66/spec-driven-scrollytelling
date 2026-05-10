@@ -29,6 +29,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
+- Planned next phase: Specs 11-14 will translate the final script into scene-first visuals, cinematic motion, a polished ending, and production hardening.
 
 ## Notes
 

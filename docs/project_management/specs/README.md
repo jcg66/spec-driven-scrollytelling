@@ -21,6 +21,10 @@ Unless a spec says otherwise, these documents assume the production target is a 
 | 08 | [deployment-and-operations.md](./08-deployment-and-operations.md) | Build, CI, GitHub Pages deployment, release checks |
 | 09 | [story-content-refresh.md](./09-story-content-refresh.md) | Narrative rewrite, support-page alignment, story coherence |
 | 10 | [design-and-layout-integration.md](./10-design-and-layout-integration.md) | Advanced visual language, layout choreography, stability |
+| 11 | [visual-architecture-and-scene-system.md](./11-visual-architecture-and-scene-system.md) | Scene-first composition, shared primitives, script-to-layout translation |
+| 12 | [cinematic-interactions-and-motion.md](./12-cinematic-interactions-and-motion.md) | Scroll choreography, visual grounding, execution loop motion |
+| 13 | [outcome-polish-and-hardening.md](./13-outcome-polish-and-hardening.md) | Resolution scene, ambient polish, accessibility and export hardening |
+| 14 | [production-hardening-and-compatibility-safeguards.md](./14-production-hardening-and-compatibility-safeguards.md) | Reduced motion, keyboard access, export stability, regression QA |
 
 ## Spec Conventions
 
