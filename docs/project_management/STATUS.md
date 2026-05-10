@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 in progress |
-| Current spec | Spec 08: Deployment and Operations in progress |
-| Current sprint | Sprint 08B ready to start |
-| Next recommended spec | Spec 08: Deployment and Operations |
-| Last completed work | Implemented and verified Sprint 07D: QA Documentation and Definition of Done |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete |
+| Current spec | Spec 08: Deployment and Operations complete |
+| Current sprint | Sprint 08B complete |
+| Next recommended spec | Project complete |
+| Last completed work | Implemented and verified Sprint 08B: Release Operations Runbook and Health Checks |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 08B: Release Operations Runbook and Health Checks`.
+- Keep the release-operations runbook aligned with the CI workflow, local preview command, and Pages publish path.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
@@ -101,4 +101,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 07D added a documented local preview workflow, a release-review checklist, and a reusable definition-of-done template for future specs and sprints.
 - Sprint 08A added a first-class `preview:export` command, a CI artifact validation step, and documentation for the exported release path.
 - Sprint 08A verification passed with `npm run verify:export` and a local `npm run preview:export` smoke run.
+- Sprint 08B added a release operations runbook and linked it from the README so deployment, preview, and post-publish checks live in one place.
+- Sprint 08B verification passed with a doc review against the current workflow and preview command surface.
 - Spec 08 sprint plan lives in `docs/project_management/sprints/08-deployment-and-operations.md`.

@@ -45,3 +45,5 @@ Run the checks in this order when you are preparing a change:
 Use `npm run build` and `npm run test:e2e` directly when you want to inspect the export or browser behavior separately before the final combined verification step.
 
 Use `npm run preview:export` after `npm run build` when you want to inspect the exported site manually at the production base path.
+
+For deployment and post-publish checks, see [docs/project_management/release-operations.md](docs/project_management/release-operations.md).
