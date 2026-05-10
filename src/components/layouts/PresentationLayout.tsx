@@ -14,7 +14,7 @@ export function PresentationLayout({
   children,
 }: PresentationLayoutProps) {
   return (
-    <article className="panel panelPresentation presentationLayout">
+    <article className="panel sceneSurface panelPresentation presentationLayout">
       <p className="eyebrow">{eyebrow}</p>
       <h1 className="title">{title}</h1>
       <p className="lede">{summary}</p>

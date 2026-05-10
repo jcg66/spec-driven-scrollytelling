@@ -5,7 +5,7 @@ type VisualizationFrameProps = {
 
 export function VisualizationFrame({ label, description }: VisualizationFrameProps) {
   return (
-    <section className="visualizationFrame" aria-label={label}>
+    <section className="visualizationFrame sceneHud" aria-label={label}>
       <p className="visualizationLabel">{label}</p>
       <p className="visualizationDescription">{description}</p>
     </section>

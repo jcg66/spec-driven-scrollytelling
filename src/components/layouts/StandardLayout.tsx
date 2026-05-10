@@ -9,7 +9,7 @@ type StandardLayoutProps = {
 
 export function StandardLayout({ title, summary, eyebrow, children }: StandardLayoutProps) {
   return (
-    <article className="panel">
+    <article className="panel sceneSurface">
       {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
       <h1 className="title">{title}</h1>
       <p className="lede">{summary}</p>

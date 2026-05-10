@@ -98,7 +98,7 @@ export function PresentationContent({ blocks }: PresentationContentProps): React
 
   return (
     <div className="presentationFlow" id={PRESENTATION_MOTION_CONTAINER_ID}>
-      <nav className="presentationOutline" aria-label="Chapter outline">
+      <nav className="presentationOutline sceneRail" aria-label="Chapter outline">
         <PresentationMotionTracker chapters={narrative.chapters} containerId={PRESENTATION_MOTION_CONTAINER_ID} />
       </nav>
 
@@ -112,7 +112,7 @@ export function PresentationContent({ blocks }: PresentationContentProps): React
         {narrative.chapters.map((chapter, index) => (
           <section
             key={chapter.id}
-            className="presentationChapter"
+            className="presentationChapter scenePanel"
             data-scene={chapter.sceneKey}
             id={chapter.id}
             aria-labelledby={`${chapter.id}-heading`}

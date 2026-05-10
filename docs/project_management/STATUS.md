@@ -6,11 +6,11 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 | Field | Value |
 |---|---|
-| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 complete |
-| Current spec | Spec 09: Story Content Refresh complete |
-| Current sprint | Sprint 09B complete |
+| Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 complete; Spec 10 in progress |
+| Current spec | Spec 10: Design and Layout Integration in progress |
+| Current sprint | Sprint 10B ready to start |
 | Next recommended spec | Spec 10: Design and Layout Integration |
-| Last completed work | Implemented and verified Sprint 09B: Supporting Context and Story QA |
+| Last completed work | Implemented and verified Sprint 10A: Design Token and Component Translation |
 
 ## Current Context
 
@@ -23,8 +23,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Keep the refreshed story aligned with the advanced design and layout plan.
-- Keep the support pages and story-reference material aligned with the homepage vocabulary.
+- Start `Sprint 10B: Scene Composition and Layout Choreography`.
+- Keep the advanced design language centralized in shared tokens and primitives.
+- Keep layout changes stable across desktop, mobile, and reduced-motion views.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
 - Keep `npm run verify:export` as the Pages-shape smoke gate for exported artifacts.
 - Keep `STATUS.md` updated as the source of truth for what is currently in progress.
@@ -111,3 +112,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 09B aligned the support pages and reference-only story outline with the refreshed homepage vocabulary while preserving the existing routes and browser anchors.
 - Sprint 09B verification passed with `npm run verify:export`.
 - Spec 09 sprint plan lives in `docs/project_management/sprints/09-story-content-refresh.md`.
+- Spec 10 QA against the current worktree found that the advanced design language is already directionally defined in the reference materials and Spec 05, but it still needs a guarded translation into reusable tokens, scene composition, and regression hardening to avoid project drift or layout instability.
+- Sprint 10A added shared design tokens, glass-surface primitives, and scene-scoped style hooks for the advanced action-layer visual language.
+- Sprint 10A verification passed with `npm run verify:export`.
+- Spec 10 sprint plan lives in `docs/project_management/sprints/10-design-and-layout-integration.md`.
