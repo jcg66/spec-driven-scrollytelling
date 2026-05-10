@@ -19,6 +19,12 @@ type PresentationSceneKey =
   | "execution-loop"
   | "outcome";
 
+type SceneChrome = {
+  label: string;
+  summary: string;
+  tags: string[];
+};
+
 type PresentationNarrativeModel = {
   introBlocks: MarkdownBlockNode[];
   chapters: PresentationNarrativeChapter[];
@@ -52,6 +58,42 @@ function createChapterId(index: number, title: string): string {
     .replace(/^-+|-+$/g, "");
 
   return `presentation-chapter-${index + 1}-${slug || "section"}`;
+}
+
+function getSceneChrome(sceneKey: PresentationSceneKey): SceneChrome {
+  switch (sceneKey) {
+    case "spark":
+      return {
+        label: "The Spark",
+        summary: "A prompt emerges from the dark and becomes the first signal in the action layer.",
+        tags: ["Intent", "Hero void", "System of Action"],
+      };
+    case "deconstruction":
+      return {
+        label: "The Logic Gate",
+        summary: "The request is split into a workflow the agent can reason through and ground.",
+        tags: ["Planner-grounder", "Micro-borders", "Workflow"],
+      };
+    case "digital-eye":
+      return {
+        label: "The Digital Eye",
+        summary: "Bounding boxes and the scan line turn the interface into something the agent can read.",
+        tags: ["Visual grounding", "HUD", "Bounding boxes"],
+      };
+    case "execution-loop":
+      return {
+        label: "The Execution Loop",
+        summary: "Action logs, checks, and corrections carry the task toward completion.",
+        tags: ["Act", "Observe", "Correct"],
+      };
+    case "outcome":
+    default:
+      return {
+        label: "The Post-App Era",
+        summary: "The process settles into a calm result and a stable finish.",
+        tags: ["Success orb", "Calm finish", "Resolution"],
+      };
+  }
 }
 
 export function buildPresentationNarrative(blocks: MarkdownBlockNode[]): PresentationNarrativeModel {
@@ -121,6 +163,17 @@ export function PresentationContent({ blocks }: PresentationContentProps): React
             <h2 className="presentationChapterHeading" id={`${chapter.id}-heading`}>
               {chapter.title}
             </h2>
+            <div className="sceneChrome" aria-hidden="true" data-scene={chapter.sceneKey}>
+              <p className="sceneChromeLabel">{getSceneChrome(chapter.sceneKey).label}</p>
+              <p className="sceneChromeSummary">{getSceneChrome(chapter.sceneKey).summary}</p>
+              <ul className="sceneChromeTags">
+                {getSceneChrome(chapter.sceneKey).tags.map((tag) => (
+                  <li key={tag} className="sceneChromeTag">
+                    {tag}
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div className="presentationChapterBody">
               <MarkdownContent blocks={chapter.blocks} />
             </div>

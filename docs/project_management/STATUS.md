@@ -8,9 +8,9 @@ This file is the lightweight checkpoint for the current implementation state. Up
 |---|---|
 | Phase | Spec 01 complete; Spec 02 complete; Spec 03 complete; Spec 04 complete; Spec 05 complete; Spec 06 complete; Spec 07 complete; Spec 08 complete; Spec 09 complete; Spec 10 in progress |
 | Current spec | Spec 10: Design and Layout Integration in progress |
-| Current sprint | Sprint 10B ready to start |
+| Current sprint | Sprint 10C ready to start |
 | Next recommended spec | Spec 10: Design and Layout Integration |
-| Last completed work | Implemented and verified Sprint 10A: Design Token and Component Translation |
+| Last completed work | Implemented and verified Sprint 10B: Scene Composition and Layout Choreography |
 
 ## Current Context
 
@@ -23,7 +23,7 @@ This file is the lightweight checkpoint for the current implementation state. Up
 
 ## Active Focus
 
-- Start `Sprint 10B: Scene Composition and Layout Choreography`.
+- Start `Sprint 10C: Stability Hardening and Regression QA`.
 - Keep the advanced design language centralized in shared tokens and primitives.
 - Keep layout changes stable across desktop, mobile, and reduced-motion views.
 - Keep all route, asset, and metadata URL construction routed through `src/lib/site-config.ts`.
@@ -115,4 +115,6 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Spec 10 QA against the current worktree found that the advanced design language is already directionally defined in the reference materials and Spec 05, but it still needs a guarded translation into reusable tokens, scene composition, and regression hardening to avoid project drift or layout instability.
 - Sprint 10A added shared design tokens, glass-surface primitives, and scene-scoped style hooks for the advanced action-layer visual language.
 - Sprint 10A verification passed with `npm run verify:export`.
+- Sprint 10B added scene-specific chrome and layout choreography for the five chapters while preserving browser and accessibility anchors.
+- Sprint 10B verification passed with `npm run verify:export`.
 - Spec 10 sprint plan lives in `docs/project_management/sprints/10-design-and-layout-integration.md`.

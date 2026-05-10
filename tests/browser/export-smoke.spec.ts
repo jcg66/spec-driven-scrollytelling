@@ -79,7 +79,7 @@ test("exported site loads under the repository base path and survives a static m
   await page.getByRole("heading", { level: 2, name: "Execution Loop" }).scrollIntoViewIfNeeded();
   await expect(page.getByRole("region", { name: "Event log" })).toBeVisible();
   await expect(page.getByText("Action: inspect the task board")).toBeVisible();
-  await expect(page.locator('[data-scene="execution-loop"]')).toContainText("Execution Loop");
+  await expect(page.locator('.presentationChapter[data-scene="execution-loop"]')).toContainText("Execution Loop");
   await expect(page.getByRole("link", { name: "story guide" })).toBeVisible();
   await page.getByRole("link", { name: "story guide" }).click();
   await expect(page).toHaveURL(new RegExp(`${basePath}/agentic-ai-context/$`));
@@ -253,15 +253,23 @@ test("homepage scene treatments remain visually distinct across the five chapter
 
   await page.goto(homeUrl, { waitUntil: "networkidle" });
 
-  const sparkChapter = page.locator('[data-scene="spark"]');
-  const deconstructionChapter = page.locator('[data-scene="deconstruction"]');
-  const executionChapter = page.locator('[data-scene="execution-loop"]');
-  const outcomeChapter = page.locator('[data-scene="outcome"]');
+  const sparkChapter = page.locator('.presentationChapter[data-scene="spark"]');
+  const deconstructionChapter = page.locator('.presentationChapter[data-scene="deconstruction"]');
+  const digitalEyeChapter = page.locator('.presentationChapter[data-scene="digital-eye"]');
+  const executionChapter = page.locator('.presentationChapter[data-scene="execution-loop"]');
+  const outcomeChapter = page.locator('.presentationChapter[data-scene="outcome"]');
 
   await expect(sparkChapter).toHaveCount(1);
   await expect(deconstructionChapter).toHaveCount(1);
+  await expect(digitalEyeChapter).toHaveCount(1);
   await expect(executionChapter).toHaveCount(1);
   await expect(outcomeChapter).toHaveCount(1);
+
+  await expect(sparkChapter.locator(".sceneChromeLabel")).toHaveText("The Spark");
+  await expect(deconstructionChapter.locator(".sceneChromeLabel")).toHaveText("The Logic Gate");
+  await expect(digitalEyeChapter.locator(".sceneChromeLabel")).toHaveText("The Digital Eye");
+  await expect(executionChapter.locator(".sceneChromeLabel")).toHaveText("The Execution Loop");
+  await expect(outcomeChapter.locator(".sceneChromeLabel")).toHaveText("The Post-App Era");
 
   const sparkBackground = await sparkChapter.evaluate((element) => getComputedStyle(element).backgroundImage);
   const executionFontFamily = await executionChapter.evaluate((element) => getComputedStyle(element).fontFamily);

@@ -413,6 +413,133 @@ button:focus-visible,
   margin-top: var(--space-3);
 }
 
+.sceneChrome {
+  display: grid;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid rgba(125, 144, 255, 0.16);
+  border-radius: var(--radius-2);
+  background:
+    linear-gradient(180deg, rgba(8, 12, 22, 0.88), rgba(5, 9, 18, 0.72)),
+    radial-gradient(circle at top right, rgba(142, 165, 255, 0.08), transparent 24%);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+
+.sceneChromeLabel {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.sceneChromeSummary {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.55;
+}
+
+.sceneChromeTags {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+}
+
+.sceneChromeTag {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(122, 229, 160, 0.18);
+  background: rgba(5, 9, 18, 0.7);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-strong);
+}
+
+.presentationChapter[data-scene="spark"] {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.presentationChapter[data-scene="spark"] .sceneChrome {
+  justify-items: center;
+  text-align: center;
+  max-width: 34rem;
+  justify-self: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(142, 165, 255, 0.18), transparent 36%),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.9), rgba(5, 9, 18, 0.72));
+}
+
+.presentationChapter[data-scene="spark"] .sceneChromeTags {
+  justify-content: center;
+}
+
+.presentationChapter[data-scene="spark"] .sceneChromeTag {
+  border-color: rgba(142, 165, 255, 0.18);
+}
+
+.presentationChapter[data-scene="deconstruction"] .sceneChrome {
+  border-color: rgba(122, 229, 160, 0.22);
+  background:
+    linear-gradient(135deg, rgba(122, 229, 160, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.9), rgba(5, 9, 18, 0.72));
+}
+
+.presentationChapter[data-scene="deconstruction"] .sceneChromeTag {
+  border-color: rgba(122, 229, 160, 0.24);
+}
+
+.presentationChapter[data-scene="digital-eye"] .sceneChrome {
+  border-color: rgba(125, 144, 255, 0.26);
+  background:
+    radial-gradient(circle at top right, rgba(125, 144, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(8, 12, 22, 0.9), rgba(5, 9, 18, 0.72));
+}
+
+.presentationChapter[data-scene="digital-eye"] .sceneChromeTag {
+  border-color: rgba(125, 144, 255, 0.22);
+}
+
+.presentationChapter[data-scene="execution-loop"] .sceneChrome {
+  border-color: rgba(122, 229, 160, 0.28);
+  background:
+    linear-gradient(180deg, rgba(4, 7, 18, 0.98), rgba(5, 9, 18, 0.82)),
+    repeating-linear-gradient(180deg, rgba(122, 229, 160, 0.04) 0 2px, transparent 2px 8px);
+}
+
+.presentationChapter[data-scene="execution-loop"] .sceneChromeTag {
+  border-color: rgba(122, 229, 160, 0.26);
+  background: rgba(3, 5, 11, 0.88);
+}
+
+.presentationChapter[data-scene="outcome"] .sceneChrome {
+  justify-items: center;
+  text-align: center;
+  max-width: 40rem;
+  justify-self: center;
+  border-color: rgba(122, 229, 160, 0.34);
+  background:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.03) 0 10px, rgba(255, 255, 255, 0.012) 10px 20px),
+    linear-gradient(135deg, rgba(122, 229, 160, 0.08), rgba(142, 165, 255, 0.08));
+}
+
+.presentationChapter[data-scene="outcome"] .sceneChromeTags {
+  justify-content: center;
+}
+
+.presentationChapter[data-scene="outcome"] .sceneChromeTag {
+  border-color: rgba(122, 229, 160, 0.3);
+}
+
 @media (min-width: 52rem) {
   .presentationFlow {
     grid-template-columns: minmax(14rem, 18rem) minmax(0, 1fr);
