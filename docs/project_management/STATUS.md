@@ -99,4 +99,3 @@ This file is the lightweight checkpoint for the current implementation state. Up
 - Sprint 07C added a dedicated release-review browser suite that organizes routing, motion, and visualization checks by risk area.
 - Sprint 07C verification passed with `npm run test:e2e -- tests/browser/release-review.spec.ts` and `npm run test:e2e`.
 - Sprint 07D added a documented local preview workflow, a release-review checklist, and a reusable definition-of-done template for future specs and sprints.
-
