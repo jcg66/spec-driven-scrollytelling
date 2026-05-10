@@ -19,6 +19,8 @@ Unless a spec says otherwise, these documents assume the production target is a 
 | 06 | [visualization-components.md](./06-visualization-components.md) | Markdown-embedded visuals and educational components |
 | 07 | [quality-assurance.md](./07-quality-assurance.md) | Automated testing, quality gates, review workflow |
 | 08 | [deployment-and-operations.md](./08-deployment-and-operations.md) | Build, CI, GitHub Pages deployment, release checks |
+| 09 | [story-content-refresh.md](./09-story-content-refresh.md) | Narrative rewrite, support-page alignment, story coherence |
+| 10 | [design-and-layout-integration.md](./10-design-and-layout-integration.md) | Advanced visual language, layout choreography, stability |
 
 ## Spec Conventions
 
