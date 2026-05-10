@@ -55,6 +55,22 @@ test.describe("Release review", () => {
     await expect(page.locator(".presentationOutline")).toHaveCSS("position", "static");
   });
 
+  test("covers scene chrome hardening in reduced motion", async ({ page, baseURL }) => {
+    const sameOriginPrefix = getSameOriginPrefix(baseURL);
+    const homeUrl = `${sameOriginPrefix}/`;
+
+    await page.setViewportSize({ width: 1280, height: 900 });
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto(homeUrl, { waitUntil: "networkidle" });
+
+    const sceneChrome = page.locator(".sceneChrome").first();
+
+    await expect(sceneChrome).toBeVisible();
+    await expect(sceneChrome).toHaveCSS("backdrop-filter", "none");
+    await expect(sceneChrome).toHaveCSS("box-shadow", "none");
+    await expect(page.locator(".presentationChapter[data-scene=\"execution-loop\"]")).toContainText("Execution Loop");
+  });
+
   test("covers embedded visualization and support-content risks", async ({ page, baseURL }) => {
     const sameOriginPrefix = getSameOriginPrefix(baseURL);
     const homeUrl = `${sameOriginPrefix}/`;
