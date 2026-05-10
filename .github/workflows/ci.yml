@@ -68,6 +68,11 @@ jobs:
       - name: Build exported site
         run: npm run build
 
+      - name: Validate exported artifact
+        run: |
+          test -f out/index.html
+          test -f out/404.html
+
       - name: Run exported-artifact browser tests
         run: npm run test:e2e
 

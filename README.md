@@ -29,6 +29,7 @@ Sprint 01A establishes the production URL and export assumptions the codebase wi
 - `npm run lint`: runs ESLint across the repository with zero tolerated warnings.
 - `npm test`: runs the current unit and component-level architecture checks.
 - `npm run build`: creates the production static export.
+- `npm run preview:export`: serves the exported artifact locally under the repository base path.
 - `npm run test:e2e`: serves the exported artifact locally under the repository base path and runs the browser smoke test.
 - `npm run verify:export`: runs type checking, linting, the production build, and then the exported-artifact browser smoke workflow.
 
@@ -42,3 +43,5 @@ Run the checks in this order when you are preparing a change:
 4. `npm run verify:export`
 
 Use `npm run build` and `npm run test:e2e` directly when you want to inspect the export or browser behavior separately before the final combined verification step.
+
+Use `npm run preview:export` after `npm run build` when you want to inspect the exported site manually at the production base path.
